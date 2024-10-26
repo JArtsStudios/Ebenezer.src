@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/lecciones.css">
+    <title>Lección 1</title>
+</head>
+<body>
+    <h1>Lección 1</h1>
+    <p>Contenido de la lección 1...</p>
+    
+    <h2>Examen</h2>
+    <button id="completar-examen">Completar Examen</button>
+
+    <script>
+        // JavaScript para manejar el examen y actualizar progreso
+        document.getElementById('completar-examen').onclick = () => {
+            let progreso = localStorage.getItem('progreso') || 1;
+            progreso = Math.max(progreso, 3); // Asegura que el progreso mínimo sea 2
+            localStorage.setItem('progreso', progreso);
+            alert('Examen completado. Progreso guardado.');
+            window.location.href = 'dotrinabasica.html';
+        };
+    </script>
+</body>
+</html>

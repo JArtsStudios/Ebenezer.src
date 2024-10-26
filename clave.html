@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificar</title>
+    <link rel="stylesheet" href="css/clave.css">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('claveForm');
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                const clave = document.getElementById('clave').value;
+                if (clave === 'Escuela@24') {
+                    localStorage.setItem('claveCorrecta', '1');
+                    window.location.href = 'escuela.html';
+                } else {
+                    localStorage.setItem('claveCorrecta', '0');
+                    alert('Clave incorrecta. Inténtalo de nuevo.');
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+
+
+    <video autoplay muted loop class="fondo-video">
+        <source src="/img/video 1.mp4" type="video/mp4">
+        Tu navegador no soporta la etiqueta de video.
+    </video>
+
+    <div class="fondo">
+        <h1>Introduce la clave</h1>
+        <form id="claveForm">
+            <label for="clave">Clave:</label>
+            <input type="password" id="clave" required>
+            <button type="submit">Verificar</button>
+        </form>
+        <a href="#">No tienes la clave?</a>
+    </div>
+
+
+
+</body>
+</html>

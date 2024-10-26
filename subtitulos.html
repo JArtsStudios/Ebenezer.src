@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Videollamadas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        #container {
+            text-align: center;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #videoContainer {
+            margin-top: 20px;
+        }
+
+        video {
+            width: 45%;
+            margin: 10px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>Videollamadas</h1>
+        <div id="create">
+            <button onclick="createOffer()">Crear sala</button>
+        </div>
+        <div>
+            <textarea id="offer" placeholder="Offer"></textarea>
+            <button onclick="setOffer()">Set Offer</button>
+        </div>
+        <div>
+            <textarea id="answer" placeholder="Answer"></textarea>
+            <button onclick="setAnswer()">Set Answer</button>
+        </div>
+        <div id="videoContainer">
+            <video id="localVideo" autoplay muted></video>
+            <video id="remoteVideo" autoplay></video>
+        </div>
+    </div>
+    <script>
+        let localStream;
+        let remoteStream;
+        let peerConnection;
+        const servers = {
+            iceServers: [
+                { urls: "stun:stun.l.google.com:19302" }
+            ]
+        };
+
+        const constraints = {
+            video: true,
+            audio: true
+        };
+
+        async function createOffer() {
+            peerConnection = new RTCPeerConnection(servers);
+            localStream = await navigator.mediaDevices.getUserMedia(constraints);
+            document.getElementById('localVideo').srcObject = localStream;
+            localStream.getTracks().forEach(track => peerConnection.addTrack(track, localStream));
+
+            peerConnection.onicecandidate = event => {
+                if (event.candidate) {
+                    console.log(JSON.stringify(event.candidate));
+                }
+            };
+
+            peerConnection.ontrack = event => {
+                remoteStream = event.streams[0];
+                document.getElementById('remoteVideo').srcObject = remoteStream;
+            };
+
+            const offer = await peerConnection.createOffer();
+            await peerConnection.setLocalDescription(offer);
+            document.getElementById('offer').value = JSON.stringify(offer);
+        }
+
+        async function setOffer() {
+            const offer = JSON.parse(document.getElementById('offer').value);
+            peerConnection = new RTCPeerConnection(servers);
+
+            peerConnection.onicecandidate = event => {
+                if (event.candidate) {
+                    console.log(JSON.stringify(event.candidate));
+                }
+            };
+
+            peerConnection.ontrack = event => {
+                remoteStream = event.streams[0];
+                document.getElementById('remoteVideo').srcObject = remoteStream;
+            };
+
+            localStream = await navigator.mediaDevices.getUserMedia(constraints);
+            document.getElementById('localVideo').srcObject = localStream;
+            localStream.getTracks().forEach(track => peerConnection.addTrack(track, localStream));
+
+            await peerConnection.setRemoteDescription(new RTCSessionDescription(offer));
+            const answer = await peerConnection.createAnswer();
+            await peerConnection.setLocalDescription(answer);
+            document.getElementById('answer').value = JSON.stringify(answer);
+        }
+
+        async function setAnswer() {
+            const answer = JSON.parse(document.getElementById('answer').value);
+            await peerConnection.setRemoteDescription(new RTCSessionDescription(answer));
+        }
+    </script>
+</body>
+</html>
