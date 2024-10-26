@@ -6,10 +6,10 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
         if (hasVisitedCuenta) {
             // Si ya se ha visitado cuenta.html, redirigir a inicio.html
-            window.location.href = "../inicio/";
+            window.location.href = "./escuela.html";
         } else {
             // Si no se ha visitado cuenta.html, redirigir a cuenta.html
-            window.location.href = "../inicio/";
+            window.location.href = "./escuela.html";
             // Marcar que ya se ha visitado cuenta.html
             localStorage.setItem("hasVisitedCuenta", "true");
         }
