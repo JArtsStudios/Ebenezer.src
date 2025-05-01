@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        form {
+            max-width: 400px;
+            margin: auto;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Formulario</h1>
+    <form id="contactForm">
+        <label>¿Te congregas en alguna iglesia?</label>
+        <input type="radio" name="congregas" value="Sí" required> Sí<br>
+        <input type="radio" name="congregas" value="No" required> No<br><br>
+
+        <label>¿Cuál es tu nombre?</label>
+        <input type="text" name="nombre" id="nombre" required>
+
+        <label>Danos tu número para contactarte</label>
+        <input type="tel" name="telefono" id="telefono" required>
+
+        <label>Danos tu correo para contactarte</label>
+        <input type="email" name="correo" id="correo" required>
+
+        <button type="submit">Enviar</button>
+    </form>
+
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script>
+        // Inicializar EmailJS
+        emailjs.init("gZ9wa6qQ9HEm1x8Vb"); // Reemplaza con tu User ID de EmailJS
+
+        document.getElementById("contactForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const serviceID = "service_3hau81a"; // Reemplaza con tu Service ID
+    const templateID = "template_ihs7z7b"; // Reemplaza con tu Template ID
+
+    const params = {
+        congregas: document.querySelector('input[name="congregas"]:checked').value,
+        nombre: document.getElementById("nombre").value,
+        telefono: document.getElementById("telefono").value,
+        correo: document.getElementById("correo").value,
+    };
+
+    emailjs.send(serviceID, templateID, params)
+        .then(() => {
+            alert("Formulario enviado correctamente.");
+            document.getElementById("contactForm").reset();
+        })
+        .catch((error) => {
+            alert("Hubo un error al enviar el formulario: " + error.text);
+        });
+});
+
+    </script>
+</body>
+</html>

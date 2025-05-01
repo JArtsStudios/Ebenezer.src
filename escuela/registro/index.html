@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+    <style>
+        html {
+            scrollbar-width: none;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            background: #06151c;
+            align-items: center;
+            justify-content: center;
+
+        }
+
+
+
+        header {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 999;
+         }
+
+        .salir {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: row;
+            justify-content: start;
+            align-items: center;
+            margin-left: 10%;
+            margin-top: 5%;
+            gap: 15px;
+            transform: translateX(-15px);
+            transition: .2s ease-in-out;
+            z-index: 999;
+        }
+
+        .salir:hover {
+            transform: translateX(5px);
+            .salir-h1 {
+                color: #fff;
+                opacity: 1;
+                transform: translateX(95px);
+            }
+
+            .icono-salir {
+                padding: 5px 35px;
+                background: #ffffff00;
+                border-radius: 50px;
+            }
+            
+
+        }
+
+
+        .salir a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .icono-salir {
+            padding: 5px 35px;
+            background: #ffffff00;
+            border-radius: 50px;
+            transition: .3s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .icono-salir h1 {
+            scale: 2;
+            font-family: "Comfortaa", sans-serif;
+            font-weight: 100;
+        }
+
+        .salir-h1 {
+            color: #fff;
+            opacity: 0;
+            transform: translateX(55px);
+            transition: .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        h1 {
+            position: fixed;
+            transform: translateX(84px) scale(1.2);
+            
+            
+        }
+        form {
+            max-width: 400px;
+            margin: auto;
+            background: #eeeeee94;
+            padding: 25px 35px 35px 25px ;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 25px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 50px;
+            border: none;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            width: 90px;
+            border-radius: 50px;
+            transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.9s;
+        }
+        button:hover {
+            border-radius: 50px;
+            background-color: #3ff548;
+            box-shadow: 0 0 20px #b6fcb9;
+            filter: blur(0.4px);
+            width: 150px;
+        }
+        button:active {
+            border-radius: 50px;
+            background-color: #68fd6f;
+            box-shadow: 0 0 20px #b6fcb9;
+            filter: blur(2.4px);
+            width: 100px; 
+        }
+    </style>
+</head>
+<body>
+
+
+    <header>
+        <div class="salir">
+            <a href="/escuela/">
+                <div class="icono-salir"><h1><</h1></div>
+    
+            </a>
+            <div class="salir-h1">
+                <h1>Salir</h1>
+            </div>
+        
+        </div>
+        <div id="profile">
+
+        </div>
+    </header>
+
+
+
+    <form id="contactForm">
+        <label>¿Te congregas en alguna iglesia?</label>
+        <input type="radio" name="congregas" value="Sí" required> Sí<br>
+        <input type="radio" name="congregas" value="No" required> No<br><br>
+
+        <label>¿Cuál es tu nombre?</label>
+        <input type="text" name="nombre" id="nombre" required>
+
+        <label>Danos tu número para contactarte</label>
+        <input type="tel" name="telefono" id="telefono" required>
+
+        <label>Danos tu correo para contactarte</label>
+        <input type="email" name="correo" id="correo" >
+
+        <button type="submit">Enviar</button>
+    </form>
+
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script>
+        // Inicializar EmailJS
+        emailjs.init("gZ9wa6qQ9HEm1x8Vb"); // Reemplaza con tu User ID de EmailJS
+
+        document.getElementById("contactForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const serviceID = "service_3hau81a"; // Reemplaza con tu Service ID
+    const templateID = "template_ihs7z7b"; // Reemplaza con tu Template ID
+
+    const params = {
+        congregas: document.querySelector('input[name="congregas"]:checked').value,
+        nombre: document.getElementById("nombre").value,
+        telefono: document.getElementById("telefono").value,
+        correo: document.getElementById("correo").value,
+    };
+
+    emailjs.send(serviceID, templateID, params)
+        .then(() => {
+            alert("Formulario enviado correctamente.");
+            document.getElementById("contactForm").reset();
+        })
+        .catch((error) => {
+            alert("Hubo un error al enviar el formulario: " + error.text);
+        });
+});
+
+    </script>
+</body>
+</html>

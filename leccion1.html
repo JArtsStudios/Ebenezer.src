@@ -129,9 +129,9 @@
     <div class="pregunta">
         <p>La salvación no depende de lo que sentimos, porque el corazón del hombre es:</p>
         <ul class="opciones">
-            <li><input type="radio" name="pregunta3" value="1"> Perverso</li>
+            <li><input type="radio" name="pregunta3" value="1"> Engañoso</li>
             <li><input type="radio" name="pregunta3" value="2"> Bondadoso</li>
-            <li><input type="radio" name="pregunta3" value="3"> Engañoso</li>
+            <li><input type="radio" name="pregunta3" value="3"> Perverso</li>
         </ul>
     </div>
 
@@ -200,35 +200,83 @@
 
     <button id="completar-examen">Completar Examen</button>
 
-    <script>
-        // JavaScript para manejar el examen y actualizar progreso
-        document.getElementById('completar-examen').onclick = () => {
-            const preguntas = document.querySelectorAll('.pregunta');
-            let todasRespondidas = true;
 
-            preguntas.forEach((pregunta, index) => {
-                const opciones = pregunta.querySelectorAll('input[type="radio"]');
-                let algunaRespondida = false;
-                opciones.forEach(opcion => {
-                    if (opcion.checked) {
-                        algunaRespondida = true;
+
+        <!-- Contenedor para mostrar el puntaje -->
+        <div id="puntaje-banner"></div>
+        
+
+
+
+
+        <script>
+            // Respuestas correctas
+            const respuestasCorrectas = {
+                pregunta1: "2",
+                pregunta2: "3",
+                pregunta3: "3",
+                pregunta4: "1",
+                pregunta5: "3",
+                pregunta6: "2",
+                pregunta7: "3",
+                pregunta8: "2",
+                pregunta9: "2",
+                pregunta10: "2"
+            };
+    
+
+
+            // Selecciona todos los elementos de lista que contienen los inputs de tipo radio
+document.querySelectorAll('.opciones li').forEach(li => {
+    li.addEventListener('click', () => {
+        // Remueve la clase .selected de todos los items para asegurarnos de que solo uno esté seleccionado
+        li.parentElement.querySelectorAll('li').forEach(item => item.classList.remove('selected'));
+        
+        // Añade la clase .selected al elemento seleccionado
+        li.classList.add('selected');
+        
+        // Marca el input de tipo radio como seleccionado
+        li.querySelector('input[type="radio"]').checked = true;
+    });
+});
+
+
+
+            document.getElementById('completar-examen').onclick = () => {
+                const preguntas = document.querySelectorAll('.pregunta');
+                let todasRespondidas = true;
+                let puntajeTotal = 0;
+    
+                preguntas.forEach((pregunta, index) => {
+                    const opciones = pregunta.querySelectorAll('input[type="radio"]');
+                    let algunaRespondida = false;
+                    opciones.forEach(opcion => {
+                        if (opcion.checked) {
+                            algunaRespondida = true;
+                            // Verificar si es la respuesta correcta
+                            const preguntaID = `pregunta${index + 1}`;
+                            if (opcion.value === respuestasCorrectas[preguntaID]) {
+                                puntajeTotal += 10; // Cada respuesta correcta vale 10 puntos
+                            }
+                        }
+                    });
+                    if (!algunaRespondida) {
+                        todasRespondidas = false;
                     }
                 });
-                if (!algunaRespondida) {
-                    todasRespondidas = false;
+    
+                if (todasRespondidas) {
+                    let progreso = localStorage.getItem('progreso') || 1;
+                    progreso = Math.max(progreso, 2); // Asegura que el progreso mínimo sea 2
+                    localStorage.setItem('progreso', progreso);
+                    localStorage.setItem('puntajeTotal', puntajeTotal); // Guardar el puntaje total
+    
+                    alert(`Examen completado. Puntaje total: ${puntajeTotal}/100. Progreso guardado.`);
+                    window.location.href = 'dotrinabasica.html';
+                } else {
+                    alert('Por favor, responde todas las preguntas antes de completar el examen.');
                 }
-            });
-
-            if (todasRespondidas) {
-                let progreso = localStorage.getItem('progreso') || 1;
-                progreso = Math.max(progreso, 2); // Asegura que el progreso mínimo sea 2
-                localStorage.setItem('progreso', progreso);
-                alert('Examen completado. Progreso guardado.');
-                window.location.href = 'dotrinabasica.html';
-            } else {
-                alert('Por favor, responde todas las preguntas antes de completar el examen.');
-            }
-        };
-    </script>
+            };
+        </script> 
 </body>
 </html>

@@ -60,7 +60,7 @@ document.getElementById('acceso').addEventListener('click', function(event) {
 
     const paginaDesbloqueada = localStorage.getItem('paginaDesbloqueada');
     if (paginaDesbloqueada === '1') {
-        window.location.href = 'dotrinabasica.html';
+        window.location.href = '../escuela/dotrinabasica/';
     } else {
         document.getElementById('banner').classList.add('visible');
         document.getElementById('banner').classList.remove('hidden');
@@ -75,7 +75,7 @@ document.getElementById('submit').addEventListener('click', function() {
 
     if (password === 'escuela@ebenezer') {
         localStorage.setItem('paginaDesbloqueada', '1');
-        window.location.href = 'dotrinabasica.html';
+        window.location.href = '../escuela/dotrinabasica/';
     } else {
         mensaje.textContent = 'Contraseña incorrecta';
         mensaje.classList.remove('hidden');

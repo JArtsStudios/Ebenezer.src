@@ -488,7 +488,6 @@ body {
 
     color: #ececec;
     gap: 10px;
-    position: sticky;
     top: 10px;
     h1{
         font-size: 85px;
@@ -863,6 +862,68 @@ body {
         scale: 1;
     }
 }
+
+
+
+
+
+/* ------Secciones Css ----- */
+
+
+.secciones-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 25px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.contenedor-base {
+    display: flex;
+    flex-direction: row;
+    background: #0f2631;
+    border-radius: 25px;
+    box-shadow: 0px 15px 25px #06151c;
+    padding: 10px;
+    gap: 25px;
+    justify-content: center;
+    margin-top: 45px;
+    transition: .3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    view-timeline-name: --image;
+    view-timeline-axis: block ;
+    animation-timeline: --image;
+    animation-name: marco-hs;
+    animation-range: entry 80% cover 50%;
+    animation-fill-mode: both;
+}
+
+.contenedor-base-img img {
+    width: 200px;
+    border-radius: 15px;
+    
+}
+
+.contenedor-base-txt {
+    color: #fff;
+
+}
+
+.contenedor-base-txt button {
+    background: #be3e2d;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 25px;
+    color: #fff;
+    cursor: pointer;
+}
+
+
+
+
+
+
 
 
 
@@ -1264,7 +1325,7 @@ body {
 
     color: #ececec;
     gap: 10px;
-    position: sticky;
+
     top: 10px;
     h1{
         font-size: 25px;
@@ -1658,9 +1719,9 @@ body {
 /* foooteer aaa */
 
 
-.thumbnail:nth-child(4),  .thumbnail:nth-child(5){
+/* .thumbnail:nth-child(4),  .thumbnail:nth-child(5){
     display: none;
-}
+} */
 
 
 
@@ -1709,12 +1770,13 @@ padding: 25px;
 .footer-nav {
     margin-top: 50px;
     display: flex;
-    gap: 25px;
+    gap: 8px;
 }
 
 .footer-nav a {
     text-decoration: none;
     color: #fff;
+    font-size: 9px;
 }
 
 
@@ -1802,9 +1864,9 @@ padding: 25px;
 
 
 
-.thumbnail:nth-child(4),  .thumbnail:nth-child(5){
+/* .thumbnail:nth-child(4),  .thumbnail:nth-child(5){
     display: none;
-}
+} */
 
 
 
@@ -1942,6 +2004,17 @@ padding: 25px;
     text-shadow: 0 0 24px #fff;
 
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 

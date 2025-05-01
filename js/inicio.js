@@ -156,7 +156,8 @@ const pages = [
     { url: '../multimedia.html', name: 'Multimedia' },
     { url: '../oraciones.html', name: 'Oraciones' },
     { url: '../ministerio/', name: 'Ministerios' },
-    { url: '../escuela.html', name: 'Escuela' },
+    { url: '../escuela/', name: 'Escuela' },
+    { url: '../escuela/progreso/', name: 'Progresos'}
     // Añade más páginas aquí
 ];
 

@@ -75,7 +75,7 @@ function createVideoElement(item, container) {
         localStorage.setItem('videoId', videoId);
         localStorage.setItem('videoTitle', videoTitle);
         localStorage.setItem('videoDescription', item.snippet.description);
-        window.location.href = 'reproductor.html';
+        window.location.href = '../multimedia/reproductor/';
     });
     container.appendChild(videoElement);
 }

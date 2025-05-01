@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../css/dotrinabasica.css">
+    <title>Doctrina Básica</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+    <link rel="icon" href="../../img/logo pequeño.png">
+</head>
+<body>
+
+
+    <header>
+        <div class="salir">
+            <a href="../../escuela/">
+                <div class="icono-salir"><h1><</h1></div>
+    
+            </a>
+            <div class="salir-h1">
+                <h1>Salir</h1>
+            </div>
+        
+        </div>
+        
+    </header>
+
+    <div class="container-titulo">
+        <div class="titulo">
+            <h1>DOTRINA BASICA | LECCIONES</h1>
+        </div>
+    
+    </div>
+
+    
+    <div class="container">
+        <div id="lecciones-container"></div>
+    </div>
+       
+
+
+
+
+
+
+
+        <footer>
+            <div class="container-footer">
+                <div class="titulo-footer">
+                    <h1>EBENEZER SRC HN</h1>
+                    <p>Somos una Iglesia bendecida prosperada en victoria y agradecida</p>
+                </div>
+                <div class="footer-nav">
+                    <a href="#">Inicio</a>
+                    <a href="ministerio.html">Ministerio</a>
+                    <a href="ministerio.html">Multimedia</a>
+                    <a href="ministerio.html">Escuela</a>
+                    <a href="ministerio.html">Oraciones</a>
+                    <a href="ministerio.html">Eventos</a>
+                    <a href="ministerio.html">Social</a>
+                </div>
+            </div>
+            <div class="social-titulo">
+                <h3>Siguenos en nuestras redes sociales.</h3>
+            </div>
+            <div class="social-footer">
+                <a href="https://www.facebook.com/Ebenezersantaritacopan">
+                    <img src="../../img/icono facebook.png" alt="facebook-icon">
+                </a>
+                <a href="https://www.instagram.com/ebenezer_santa_rita_copan_hn/">
+                    <img src="../../img/icono instagram.png" alt="instagram-icon">
+                </a>
+                <a href="https://www.threads.net/@ebenezer_santa_rita_copan_hn?xmt=AQGzwkF8ilaiVWQnhKauaFZZdUW4i6pKcwABdJqOOzmhl7M">
+                    <img src="../../img/icono Threads.png" alt="threads-icon">
+                </a>
+                <a href="https://youtube.com/@ebenezersantarita?si=Jx77Lc7kCwpXxxap">
+                    <img src="../../img/icono youtube.png" alt="youtube-icon">
+                </a>
+            </div>
+            <div class="creditos">
+                <h3>Sitio-Web desarrollado por: <br> J Arts Studio </h3>
+                <a href="https://jartsstudios.github.io/J-Arts-Studios/">©J Arts Studios 2024</a>
+            </div>
+        </footer>
+
+
+
+    <script>
+        // JavaScript para generar las lecciones y verificar progreso
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const leccionesContainer = document.getElementById('lecciones-container');
+            const progreso = localStorage.getItem('progreso') || 1;
+
+            for (let i = 1; i <= 23; i++) {
+                const leccion = document.createElement('div');
+                leccion.classList.add('leccion');
+                leccion.innerHTML = `<a href="./leccion${i}/">Lección ${i}</a>`;
+                
+                if (i > progreso) {
+                    leccion.classList.add('bloqueada');
+                    leccion.querySelector('a').onclick = (e) => e.preventDefault();
+                }
+
+                leccionesContainer.appendChild(leccion);
+            }
+        });
+
+
+        document.addEventListener('DOMContentLoaded', function() {
+    const avatar = localStorage.getItem('avatar');
+    const avatarElement = document.getElementById('avatar');
+
+    if (avatar) {
+        avatarElement.setAttribute('src', avatar);
+    } else {
+        console.log('No se encontró la foto de perfil.');
+    }
+
+    // Redireccionar a perfil.html al hacer clic en la imagen de perfil
+    avatarElement.addEventListener('click', function() {
+        window.location.href = 'perfil.html';
+    });
+});
+
+
+
+    </script>
+</body>
+</html>
