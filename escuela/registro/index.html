@@ -15,12 +15,33 @@
             padding: 0;
             height: 100%;
             font-family: Arial, sans-serif;
-            background: #06151c;
+      background: #111;
+      overflow: hidden;
+      position: relative;
             align-items: center;
             justify-content: center;
 
         }
 
+    /* Capa con el patrón */
+    .pattern {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 200%;
+      height: 200%;
+      background-image: 
+        linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px),
+        linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px);
+      background-size: 40px 40px; /* tamaño de la cuadricula */
+      animation: moveGrid 5s  linear infinite;
+      z-index: -1;
+    }
+
+    @keyframes moveGrid {
+      from { transform: translate(0, 0); }
+      to { transform: translate(-40px, -40px); }
+    }
 
 
         header {
@@ -94,16 +115,31 @@
             
             
         }
+
+
+
+        .tecongregas {
+            display: flex;
+            flex-direction: row;
+        }
+
+
+
         form {
             max-width: 400px;
             margin: auto;
-            background: #eeeeee94;
+            border-radius: 100px;
+            border-top: 1.5px  solid #ffffff73;
+            backdrop-filter: blur(2.5px) url(#filtroVidrioMascara) url(#chromatic-aberration) ;
+            box-shadow: inset 0 0 3px .5px #ffffff2d;
+            filter: brightness(1);
             padding: 25px 35px 35px 25px ;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             border-radius: 25px;
+            color: #fff;
         }
         label {
             display: block;
@@ -144,6 +180,9 @@
 <body>
 
 
+    <div class="pattern"></div>
+  🔳 Patrón en movimiento
+
     <header>
         <div class="salir">
             <a href="/escuela/">
@@ -164,8 +203,10 @@
 
     <form id="contactForm">
         <label>¿Te congregas en alguna iglesia?</label>
+        <div class="tecongregas">
         <input type="radio" name="congregas" value="Sí" required> Sí<br>
         <input type="radio" name="congregas" value="No" required> No<br><br>
+        </div>
 
         <label>¿Cuál es tu nombre?</label>
         <input type="text" name="nombre" id="nombre" required>
@@ -179,16 +220,74 @@
         <button type="submit">Enviar</button>
     </form>
 
+     <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute;">
+    <filter id="filtroVidrioMascara" x="-50%" y="-50%" width="200%" height="200%">
+      
+      <!-- 1. Turbulencia (ondas) -->
+      <feTurbulence type="fractalNoise" baseFrequency="0.01" numOctaves="2" result="ruido" />
+
+      <!-- 2. Máscara radial: centro blanco (sin efecto), bordes negros (con efecto) -->
+      <feImage result="mascaraRadial"
+        href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJhZGlhbEdyYWRpZW50IGlkPSJyIiBjeD0iMTAwIiBjeT0iMTAwIiByPSI4MCI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjZmZmIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMDAwIi8+PC9yYWRpYWxHcmFkaWVudD48cmVjdCBmaWxsPSJ1cmwoI3IpIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIvPjwvc3ZnPg=="
+        preserveAspectRatio="none"
+      />
+
+      <!-- 3. Composición: ondas * máscara radial -->
+      <feComposite in="ruido" in2="mascaraRadial" operator="in" result="ondasLimitadas" />
+
+      <!-- 4. Aplicar desplazamiento -->
+      <feDisplacementMap in="SourceGraphic" in2="ondasLimitadas" scale="150"
+        xChannelSelector="R" yChannelSelector="G" />
+    </filter>
+  </svg>
+
+    
+
+<svg width="0" height="0" style="position:absolute;">
+  <defs>
+    <filter id="chromatic-aberration" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
+      <!-- Desplazar rojo -->
+      <feOffset in="SourceGraphic" dx="-2" dy="0" result="red" />
+      <feColorMatrix in="red" type="matrix" values="
+         1 0 0 0 0
+         0 0 0 0 0
+         0 0 0 0 0
+         0 0 0 1 0" result="redOnly" />
+      
+      <!-- Desplazar verde -->
+      <feOffset in="SourceGraphic" dx="0" dy="0" result="green" />
+      <feColorMatrix in="green" type="matrix" values="
+         0 0 0 0 0
+         0 1 0 0 0
+         0 0 0 0 0
+         0 0 0 1 0" result="greenOnly" />
+      
+      <!-- Desplazar azul -->
+      <feOffset in="SourceGraphic" dx="2" dy="0" result="blue" />
+      <feColorMatrix in="blue" type="matrix" values="
+         0 0 0 0 0
+         0 0 0 0 0
+         0 0 1 0 0
+         0 0 0 1 0" result="blueOnly" />
+      
+      <!-- Combinar los colores -->
+      <feBlend in="redOnly" in2="greenOnly" mode="screen" result="rg" />
+      <feBlend in="rg" in2="blueOnly" mode="screen" />
+    </filter>
+  </defs>
+</svg>
+
+
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
     <script>
         // Inicializar EmailJS
-        emailjs.init("gZ9wa6qQ9HEm1x8Vb"); // Reemplaza con tu User ID de EmailJS
+        emailjs.init("0s7txQoFEkZAkAaZP"); // Reemplaza con tu User ID de EmailJS
 
         document.getElementById("contactForm").addEventListener("submit", function(event) {
     event.preventDefault();
 
-    const serviceID = "service_3hau81a"; // Reemplaza con tu Service ID
-    const templateID = "template_ihs7z7b"; // Reemplaza con tu Template ID
+    const serviceID = "service_wltl9a2"; // Reemplaza con tu Service ID
+    const templateID = "template_fmrepao"; // Reemplaza con tu Template ID
 
     const params = {
         congregas: document.querySelector('input[name="congregas"]:checked').value,
