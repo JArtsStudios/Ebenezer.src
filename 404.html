@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 - No Encontrado</title>
+<style>
+  body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Arial', sans-serif;
+    background-color: #06151C;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #EAF5FB;
+  }
+
+  .container {
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 8rem;
+    margin: 0;
+    color: #2685B2;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    margin: 10px 0 30px;
+    color: #EAF5FB;
+  }
+
+  button {
+    padding: 12px 25px;
+    font-size: 1rem;
+    border: 2px solid #2685B2;
+    border-radius: 5px;
+    background-color: transparent;
+    color: #2685B2;
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
+
+  button:hover {
+    background-color: #2685B2;
+    color: #EAF5FB;
+  }
+
+</style>
+</head>
+<body>
+  <div class="container">
+    <h1>404</h1>
+    <h2>Página no encontrada</h2>
+    <button onclick="goHome()">Volver al inicio</button>
+  </div>
+
+  <script>
+    function goHome() {
+      window.location.href = '../inicio/';
+    }
+  </script>
+</body>
+</html>

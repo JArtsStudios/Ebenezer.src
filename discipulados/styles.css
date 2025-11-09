@@ -1,0 +1,62 @@
+/* estilos generales */
+* { box-sizing: border-box; }
+html,body { height:100%; margin:0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; color:#222; background:#f6f7fb; }
+
+/* header */
+.site-header { padding:18px 20px; background:#fff; border-bottom:1px solid #e6e9ef; }
+.site-header h1 { margin:0 0 6px; font-size:20px; }
+.subtitle { margin:0; color:#666; font-size:13px; }
+
+/* layout principal */
+.layout { display:flex; gap:18px; padding:18px; max-width:1200px; margin:18px auto; }
+
+/* panel de barrios (aside) */
+.barrios-panel { width:260px; background:#fff; border:1px solid #e6e9ef; padding:14px; border-radius:10px; height:fit-content; }
+.barrios-panel h2 { margin:0 0 10px; font-size:16px; }
+.btn-list { display:flex; flex-direction:column; gap:8px; }
+.btn-bar { display:block; text-align:left; padding:10px 12px; border-radius:8px; border:1px solid transparent; background:linear-gradient(180deg,#ffffff,#fbfdff); cursor:pointer; font-weight:600; }
+.btn-bar:hover { transform:translateY(-1px); box-shadow:0 6px 18px rgba(23,30,59,0.06); border-color:#e0e6f0; }
+.btn-bar.active { background:#eef6ff; border-color:#cfe3ff; }
+
+/* panel detalle (main) */
+.detalle-panel { flex:1; background:#fff; border:1px solid #e6e9ef; border-radius:10px; padding:14px; display:flex; flex-direction:column; min-height:320px; }
+.detalle-header h2 { margin:0 0 4px; font-size:18px; }
+.detalle-header p { margin:0 0 12px; color:#666; font-size:13px; }
+
+/* contenido: lista de grupos + mapa */
+.contenido { display:flex; gap:16px; flex:1; min-height:220px; }
+
+/* lista de grupos */
+.grupos { width:380px; max-width:45%; overflow:auto; padding-right:6px; }
+.grupo-card { background:#fbfdff; border:1px solid #eef2fb; padding:10px; border-radius:8px; margin-bottom:10px; }
+.grupo-title { font-weight:700; margin:0 0 6px; }
+.grupo-meta { margin:0 0 8px; color:#444; font-size:14px; }
+.contact-list { list-style:none; padding:0; margin:0 0 8px; color:#333; font-size:14px; }
+.contact-list li { margin:4px 0; }
+.btn-mapa { display:inline-block; padding:8px 10px; border-radius:8px; background:#0b74ff; color:#fff; text-decoration:none; cursor:pointer; font-size:13px; border:none; }
+.btn-mapa:active { transform:translateY(1px); }
+
+/* mapa */
+.mapa { flex:1; min-width:260px; display:flex; flex-direction:column; }
+.mapa-wrapper { flex:1; border-radius:8px; overflow:hidden; border:1px solid #e6e9ef; }
+iframe { width:100%; height:100%; border:0; min-height:280px; display:block; }
+.mapa-pista { margin:8px 0 0; font-size:13px; color:#666; }
+
+/* footer */
+.site-footer { text-align:center; padding:12px; color:#666; font-size:13px; }
+
+/* pequeñas pantallas: mobile */
+@media (max-width:900px) {
+  .layout { flex-direction:column; padding:12px; }
+  .barrios-panel { width:100%; order:0; display:flex; }
+  .detalle-panel { order:1; width:100%; }
+  .contenido { flex-direction:column; }
+  .grupos { width:100%; max-width:100%; order:1; }
+  .mapa { order:0; min-height:240px; margin-bottom:10px; }
+  iframe { min-height:220px; }
+}
+
+/* tablet intermedia */
+@media (min-width:901px) and (max-width:1100px) {
+  .grupos { width:320px; max-width:40%; }
+}

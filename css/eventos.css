@@ -1,11 +1,215 @@
-body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    display: flex;
-    font-family: Arial, sans-serif;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+
+}
+
+html {
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+}
+
+body{
     background: #06151c;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+}
+
+.navbar {
+    background: #06151c98;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  border-bottom: solid 1px #ffffff8a;
+  position: sticky;
+  top: 0;
+  backdrop-filter: blur(4.5px);
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.logout-btn {
+  background: #164E68;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  border-right: solid 1px #ffffff81;
+  cursor: pointer;
+  transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  text-decoration: none;
+}
+
+.logout-btn:hover {
+background: #7BC2E3;
+background: radial-gradient(circle, rgba(123, 194, 227, 1) 52%, rgba(38, 133, 178, 1) 100%);
+  border-right: solid 0px #ffffff6e;
+  box-shadow: 0 0 25px #C5E4F3;
+  border-bottom: solid 1px #ffffff81;
+  scale: 1.1;
+}
+
+.eventos {
+  padding: 50px 20px;
+    background: #06151c;
+  min-height: 100vh;
+}
+
+.titulo-seccion {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 2rem;
+  color: #e3f2fd;
+  position: relative;
+}
+
+.titulo-seccion::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: #e3f2fd;
+  margin: 10px auto 0 auto;
+  border-radius: 2px;
+}
+
+.grid-eventos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 25px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.card {
+  background: #0E3242;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+  transition:  0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  cursor: pointer;
+  position: relative;
+  opacity: 0;
+  border-right: solid 1px #ffffff81;
+  transform: translateY(18px);
+}
+
+.card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+}
+
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-bottom: 4px solid #e3f2fd;
+  transition: transform 0.3s ease;
+}
+
+.card:hover img {
+  transform: scale(1.05);
+}
+
+.contenido {
+  padding: 20px;
+}
+
+.contenido h3 {
+  color: #e3f2fd;
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
+
+.contenido p {
+  color: #A0D3EB;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.fecha {
+  display: inline-block;
+  background: #06151C;
+  color: #fff;
+  padding: 5px 12px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+}
+
+.contador {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #e3f2fd;
+}
+
+.contador button {
+  background: #06151C;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  border-right: solid 1px #ffffff81;
+  cursor: pointer;
+  transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.contador button:hover {
+background: #7BC2E3;
+background: radial-gradient(circle, rgba(123, 194, 227, 1) 52%, rgba(38, 133, 178, 1) 100%);
+  border-right: solid 0px #ffffff6e;
+  box-shadow: 0 0 25px #C5E4F3;
+  border-bottom: solid 1px #ffffff81;
+  scale: 1.1;
+}
+
+.imagen-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #172025da;
+  backdrop-filter: blur(6.5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  cursor: pointer;
+}
+
+.imagen-overlay img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 15px;
+  box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+}
+
+@media (max-width: 900px) {
+  .titulo-seccion {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .navbar {
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px 20px;
+  }
+
+  .titulo-seccion {
+    font-size: 1.6rem;
+  }
+
+  .card img {
+    height: 150px;
+  }
 }

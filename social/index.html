@@ -1,202 +1,212 @@
-<!DOCTYPE html>
-<html lang="en">
+
+
+<!doctype html>
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="css/oraciones.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
-    <link rel="icon" href="img/logo pequeño.png">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Redes Sociales — Sígueme</title>
+  <meta name="description" content="Enlaces a mis redes sociales" />
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
   <style>
-html {
-    scrollbar-width: none;
-    scroll-behavior: smooth;
-}
-
-body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    font-family: Arial, sans-serif;
-    background: #06151c;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-
-}
-
-header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 999;
-}
-
-.salir {
-    font-family: Arial, sans-serif;
-    display: flex;
-    flex-direction: row;
-    justify-content: start;
-    align-items: center;
-    margin-left: 10%;
-    margin-top: 5%;
-    gap: 15px;
-    transform: translateX(-15px);
-    transition: .2s ease-in-out;
-    z-index: 999;
-}
-
-.salir:hover {
-    transform: translateX(0px);
-    .salir-h1 {
-        color: #fff;
-        opacity: 1;
-        transform: translateX(0px);
+    :root{
+      --bg: #0f1724;
+      --card: linear-gradient(135deg,#0b1220 0%, #162032 100%);
+      --accent: #1c51e2;
+      --glass: rgba(255,255,255,0.04);
+      --muted: rgba(255,255,255,0.7);
+      --radius: 16px;
+      --gap: 14px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
     }
 
-    .icono-salir {
-        padding: 5px 35px;
-        background: #ffffff28;
-        border-radius: 50px;
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      min-height:100%;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(58, 100, 237, 0.12), transparent),
+                  radial-gradient(900px 400px at 90% 90%, rgba(14,165,233,0.06), transparent),
+                  var(--bg);
+      color:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:32px 16px;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
     }
-    
 
-}
-
-
-.salir a {
-    text-decoration: none;
-    color: #fff;
-}
-
-.icono-salir {
-    padding: 5px 35px;
-    background: #ffffff00;
-    border-radius: 50px;
-    transition: .3s cubic-bezier(0.165, 0.84, 0.44, 1);
-}
-
-.icono-salir h1 {
-    scale: 2;
-    font-family: "Comfortaa", sans-serif;
-    font-weight: 100;
-}
-
-.salir-h1 {
-    color: #fff;
-    opacity: 0;
-    transform: translateX(45px);
-    transition: .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.titulo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 45px 0px;
-    border-bottom: solid 2px  #fff;
-    width: 350px;
-    margin-bottom: 25px;
-    transform: translateX(180%);
-    z-index: 999;
-
-}
-.titulo h1 {
-    font-size: 20px;
-    scale: 6;
-    font-family: "Anton", sans-serif;
-    font-weight: 400;
-    color: #fff;
-    z-index: 999;
-
-}
-
-
-    h1 {
-      margin-bottom: 40px;
+    .container{
+      width:100%;
+      max-width:520px;
+      background:var(--card);
+      border-radius:calc(var(--radius) + 4px);
+      padding:28px;
+      box-shadow: 0 10px 30px rgba(2,6,23,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+      border:1px solid rgba(255,255,255,0.03);
     }
-    .social-links {
-      display: flex;
-      gap: 30px;
-      flex-wrap: wrap;
-      justify-content: center;
+
+    .profile{
+      display:flex;
+      gap:16px;
+      align-items:center;
+      margin-bottom:18px;
     }
-    .social-link {
-      text-align: center;
-      cursor: pointer;
-      transition: transform 0.3s;
+
+    .avatar{
+      width:72px;
+      height:72px;
+      border-radius:16px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:700;
+      font-size:20px;
+      color:var(--muted);
+      overflow:hidden;
+      flex:0 0 72px;
     }
-    .social-link img {
-      width: 80px;
-      height: 80px;
-      transition: transform 0.3s;
+
+    .avatar img {
+      max-width: 60px;
+      filter: invert(1) brightness(2);
+    }
+
+    .profile-info h1{margin:0;font-size:18px;letter-spacing:-0.2px}
+    .profile-info p{margin:4px 0 0;color:var(--muted);font-size:13px}
+
+    .links{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:var(--gap);
+      margin-top:8px;
+    }
+
+    .link{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      padding:14px 16px;
+      border-radius:12px;
+      background:var(--glass);
+      text-decoration:none;
+      color:inherit;
+      transition:transform .14s ease, box-shadow .14s ease, background .14s ease;
+      border:1px solid rgba(255,255,255,0.024);
+      backdrop-filter: blur(6px) saturate(120%);
+    }
+
+    .link:hover{transform:translateY(-6px);box-shadow:0 12px 30px rgba(2,6,23,0.6)}
+    .link:active{transform:translateY(-2px)}
+
+    .icon{
+      width:44px;height:44px;border-radius:10px;display:inline-grid;place-items:center;flex:0 0 44px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    }
+
+    .icon img{
+      width:24px;
+      height:24px;
+      border-radius:6px;
       filter: invert(1);
-      opacity: 0.7;
     }
-    .social-link:hover img {
-      transform: scale(1.1);
-      opacity: 1;
-      filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.5)) invert(1);
+
+    .label{font-weight:600}
+    .meta{font-size:13px;color:var(--muted);margin-top:4px}
+
+    .footer{display:flex;gap:10px;align-items:center;justify-content:space-between;margin-top:18px;color:var(--muted);font-size:13px}
+
+    .back-btn {
+      display:inline-block;
+      margin-top:20px;
+      background:var(--accent);
+      color:#fff;
+      border:none;
+      border-radius:10px;
+      padding:10px 20px;
+      font-weight:600;
+      cursor:pointer;
+      text-align:center;
+      width:100%;
+      transition:background .2s ease, transform .2s ease;
     }
+    .back-btn:hover{background:#2f4b74;transform:translateY(-3px)}
+
+    /* Responsive */
+    @media (min-width:640px){
+      .links{grid-template-columns:repeat(2,1fr)}
+    }
+
   </style>
 </head>
 <body>
-
-    <header>
-        <div class="salir">
-            <a href="/inicio/">
-                <div class="icono-salir"><h1><</h1></div>
-    
-            </a>
-            <div class="salir-h1">
-                <h1>Salir</h1>
-            </div>
-        
-        </div>
-        <div id="profile">
-
-        </div>
+  <main class="container" role="main">
+    <header class="profile">
+      <div class="avatar" aria-hidden="true"><img src="../img/logo pequeño.png" alt="Ebenezer"></div>
+      <div class="profile-info">
+        <h1>Ebenezersrc.org</h1>
+        <p>Síguenos en nuestras redes — links directos</p>
+      </div>
     </header>
 
-    <div class="container-titulo">
-        <div class="titulo">
-            <h1>NUESTRAS REDES SOCIALES</h1>
+    <section class="links" aria-label="Enlaces a redes sociales">
+
+      <!-- Facebook -->
+      <a class="link" href="https://www.facebook.com/Ebenezersantaritacopan" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+        <span class="icon" aria-hidden="true">
+          <img src="../img/icono facebook.png" alt="Facebook" />
+        </span>
+        <div>
+          <div class="label">Facebook</div>
+          <div class="meta">Nuestra página oficial</div>
         </div>
-    
+      </a>
+
+      <!-- Instagram -->
+      <a class="link" href="https://www.instagram.com/ebenezer_santa_rita_copan_hn/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+        <span class="icon" aria-hidden="true">
+          <img src="../img/icono instagram.png" alt="Instagram" />
+        </span>
+        <div>
+          <div class="label">Instagram</div>
+          <div class="meta">Fotos</div>
+        </div>
+      </a>
+
+      <!-- YouTube -->
+      <a class="link" href="https://www.youtube.com/@EbenezerSantaRita/" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+        <span class="icon" aria-hidden="true">
+          <img src="../img/icono youtube.png" alt="YouTube" />
+        </span>
+        <div>
+          <div class="label">YouTube</div>
+          <div class="meta">Transmisiones y Videos</div>
+        </div>
+      </a>
+
+      <!-- Threads -->
+      <a class="link" href="https://www.threads.com/@ebenezer_santa_rita_copan_hn?xmt=AQF0YcBvguADlyRmgNmQFb9sodPBf6IKP8cnYKrprMDSCwU" target="_blank" rel="noopener noreferrer" aria-label="Threads">
+        <span class="icon" aria-hidden="true">
+          <img src="../img/icono Threads.png" alt="Threads" />
+        </span>
+        <div>
+          <div class="label">Threads</div>
+          <div class="meta">Publicaciones cortas</div>
+        </div>
+      </a>
+
+    </section>
+
+     <button class="back-btn"onclick="window.location.href='../inicio/'">← Regresar</button>
+
+    <div class="footer">
+      <div>© <span id="year"></span></div>
     </div>
+  </main>
 
-  <div class="social-links">
-    <!-- YouTube -->
-    <a class="social-link" href="https://www.youtube.com/@EbenezerSantaRita" target="_blank">
-      <img src="../img/icono youtube.png" alt="YouTube">
-    </a>
-    <!-- Facebook -->
-    <a class="social-link" href="https://www.facebook.com/Ebenezersantaritacopan" target="_blank">
-      <img src="../img/icono facebook.png" alt="Facebook">
-    </a>
-    <!-- Instagram -->
-    <a class="social-link" href="https://www.instagram.com/ebenezer_santa_rita_copan_hn/" target="_blank">
-      <img src="../img/icono instagram.png" alt="Instagram">
-    </a>
-    <!-- Threads -->
-    <a class="social-link" href="https://www.threads.net/@ebenezer_santa_rita_copan_hn?xmt=AQGz9qkD3KgnGMVSbLXaLmRWTjyFk4OvFyh0PnZElnXVMZI" target="_blank">
-      <img src="../img/icono Threads.png" alt="Threads">
-    </a>
-  </div>
-
-
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>

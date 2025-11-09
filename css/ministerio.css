@@ -1,3 +1,10 @@
+* {
+    box-sizing: border-box;
+    /* outline: 1px solid red; */
+}
+
+
+
 
 html {
     scrollbar-width: none;
@@ -85,45 +92,121 @@ body {
 }
 
 /* Estilos de la barra de navegación */
+
 .navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1a1a1a00;
+  padding: 15px 25px;
+  position: relative;
+  z-index: 999;
+  
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: bold;
+
+}
+
+.logo:hover {
+    .logotipo {
+        margin-left: 75%;
+    }
+}
+
+.logotipo {
+    max-width: 105px;
+    scale: 2.5;
+    margin-left: 65%;
+    filter: invert(1);
+      transition: .3s cubic-bezier(0.175, 0.885, 0.32, 1.275)
+}
+
+.nav-links {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition:  0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  opacity: .7;
+}
+
+.nav-links a:hover {
+  background-color: #ffffff0c;
+  border-radius: 50px;
+  scale: 1.1;
+  transform: translateY(-3px);
+  opacity: 1;
+}
+
+
+.search-placeholder {
+  width: 180px;
+  height: 30px;
+  border: 1px dashed #555;
+}
+
+/* Botón de menú (móvil) */
+.menu-toggle {
+  display: none;
+  font-size: 24px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+
+@media screen and (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .logotipo {
+    max-width: 90px;
+    scale: 1;
+    margin-left: 0;
+    filter: invert(1);
+    content: url(../img/logo\ pequeño.png);
+}
+
+  .nav-links {
     position: fixed;
     top: 0;
-    left: 0;
-    width: 100%;
-    
+    left: -360px;
+    width: 300px;
+    height: 40vh;
+    background-color: #1a1a1a;
+    backdrop-filter: blur(0px);
+    flex-direction: column;
+    padding: 30px 20px;
+    gap: 2px;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
     z-index: 1000;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 10px 20px;
-    transform: translateY(-45px);
+    border-radius: 0 0 0px 0;
+    opacity: 0;
+  }
 
+  .nav-links.show {
+    left: 0;
+    background-color: #1a1a1a9d;
+    border-radius: 0 0 50px 0;
+   border-right: solid 1px #ffffff56;
+   backdrop-filter: blur(19.5px);
+    height: 55vh;
+    width: 350px;
+    gap: 20px;
+    opacity: 1;
+  }
 }
-
-
-
-
-.navbar a {
-    text-decoration: none;
-    color: #fff;
-    margin: 0 10px;
-    padding: 5px 10px;
-    border-radius: 5px;
-}
-
-.logo img {
-    max-width: 300px;
-    height: auto;
-    filter: brightness(100);
-}
-
-
-
-
-
-
-
-
 
 
 
@@ -147,10 +230,8 @@ body {
     width: 30%;
     padding: 10px 40px 10px 20px;
     background: rgba(255, 255, 255, 0.651);
-    backdrop-filter: blur( 5.5px );
-    -webkit-backdrop-filter: blur( 5.5px );
-    
-    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    backdrop-filter: blur(5.5px);
+    -webkit-backdrop-filter: blur(5.5px);
     border: none;
     border-radius: 25px;
     font-size: 16px;
@@ -163,7 +244,7 @@ body {
 }
 
 #searchInput:focus {
-    width: 75%;
+    width: 70%;
     outline: none;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
@@ -181,8 +262,8 @@ body {
     position: absolute;
     top: calc(100% + 15px);
     left: 50%;
-    transform: translate(-50%, 0); /* Centra horizontalmente */
-    background: rgba(255, 255, 255, 0.781);
+    transform: translate(-50%, 0);
+    background: rgba(255, 255, 255, 0.774);
     border-radius: 15px;
     width: 100%;
     max-width: 350px;
@@ -194,7 +275,7 @@ body {
     overflow-y: hidden;
     z-index: 10;
     padding: 10px 15px;
-
+    backdrop-filter: blur(5.5px);
 }
 
 #searchResults.show {
@@ -209,12 +290,12 @@ body {
     padding: 10px 15px;
     text-decoration: none;
     color: #333;
-    transition: background-color 0.3s ease, transform 0.3s ease; /* Agregada animación de transformación */
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 #searchResults a:hover {
     background: #c5d6fe;
-    transform: scale(1.05); /* Añadido efecto de escalado al pasar el cursor */
+    transform: scale(1.05);
 }
 
 #searchResults .no-results {
@@ -224,9 +305,10 @@ body {
 }
 
 .blur-background {
-    filter: blur(5.5px);
+    filter: blur(15.5px);
     -webkit-filter: blur(5.5px);
     transition: filter 0.4s ease;
+    z-index: 999;
 }
 
 .blur-overlay {
@@ -235,13 +317,12 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.418);
-    z-index: 5;
+    background: rgba(0, 0, 0, 0.514);
+    z-index: 90;
+    transition: .4s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+    backdrop-filter: blur(15.5px);
     display: none;
 }
-
-
-
 
 
 
@@ -486,6 +567,11 @@ body {
     max-width: 100%;
 }
 
+.familia-pastoral {
+opacity: 1;
+
+}
+
 .ministerios {
     margin-top: 15%;
     display: flex;
@@ -504,6 +590,7 @@ body {
     padding: 20px;
     border-radius: 25px;
     background: #0f2631;
+    border-right: solid 1px #ffffff5d;
     box-shadow: 0 5px 5px #030b0f4d;
     perspective: 1000px;
     margin: 20px;
@@ -530,6 +617,7 @@ body {
     background-size: cover;
     border-radius: 15px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    border-right: solid 1px #ffffff5d;
     transition: transform 0.3s;
     display: flex;
     flex-direction: column;
@@ -591,6 +679,7 @@ body {
     padding: 20px;
     border-radius: 25px;
     background: #0f2631;
+    border-right: solid 1px #ffffff5d;
     box-shadow: 0 5px 5px #030b0f4d;
     color: #fff;
   }
@@ -614,6 +703,7 @@ body {
     width: 100%;
     height: 100%;
     border-radius: 15px;
+    border-right: solid 1px #ffffff5d;
   }
 
 
@@ -831,173 +921,15 @@ body {
 
 }
 
-/* Estilos de la barra de navegación */
-.navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
+
+
+                /* Fotos Principales */
+
+
     
-    z-index: 1000;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 10px 20px;
-    transform: translateY(-45px);
-
-}
-
-
-
-
-.navbar a {
-    text-decoration: none;
-    color: #fff;
-    margin: 0 10px;
-    padding: 5px 10px;
-    border-radius: 5px;
-}
-
-.logo img {
-    max-width: 300px;
-    height: auto;
-    filter: brightness(100);
-}
-
-
-.buscador {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    margin-right: 5%;
-}
-
-
-
-
-.search-container {
-    position: relative;
-    /* width: 100%;
-    max-width: 300px; */
-}
-
-#searchInput {
-    width: 30%;
-    padding: 10px 40px 10px 20px;
-    background: #ffffff9d;
-    border: none;
-    backdrop-filter: blur(15px);
-    border-radius: 25px;
-
-    font-size: 16px;
-    transition: .4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-#searchInput:hover {
-    width: 40%;
-
-}
-
-#searchInput:focus {
-    width: 75%;
-
-    border: none;
-    outline: none;
-}
-
-.search-icon {
-    position: absolute;
-    top: 50%;
-    right: 15px;
-    transform: translateY(-50%);
-    color: #fff;
-}
-
-#searchResults {
-    position: absolute;
-    top: calc(100% + 10px);
-    left: 50%;
-    transform: translateX(-50%);
-    background: #ffffffb6;
-  padding: 10px 0;
-    border-radius: 10px;
-    width: 100%;
-    max-width: 300px;
-    display: none;
-    box-shadow: 0 2px 10px rgba(5, 13, 27, 0.277);
-    opacity: 0;
-    transition: all .4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    max-height: 0;
-    overflow-y: hidden;
-    z-index: 10;
-    
-}
-
-#searchResults.show {
-    display: block;
-    opacity: 1;
-    max-height: 200px;
-
-}
-
-#searchResults a {
-    display: block;
-    padding: 10px 15px;
-    text-decoration: none;
-    color: #333;
-    transition: .3s ease;
-
-
-}
-
-#searchResults a:hover {
-    background: #c5d6fe;
-}
-
-#searchResults a:last-child {
-    border-bottom: none;
-}
-
-.content {
-margin: 0;
-}
-
-.blur-background {
-    filter: blur(5px);
-    transition:  0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.blur-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(27, 27, 27, 0);
-    z-index: 5;
-    display: none;
-}
-
-
-
-@keyframes subir {
-    form{
- 
-        opacity: 0;
-    }
-
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
-} 
-
-
-.grid-container {
+    .grid-container {
     display: grid;
-    gap: 20px;
+    gap: 10px;
     justify-content: center;
     align-items: center;
     grid-template-areas: 
@@ -1006,14 +938,14 @@ margin: 0;
     "d b e"
     
     ;
-    transform: translateY(-450px);
+    transform: translateY(-550px);
 }
 
 .grid-item {
-    width: 90px;
-    height: 90px;
+    width: 100px;
+    height: 150px;
     border-radius: 15px;
-    background: url(../img/img\ 18.JPG);
+    background: url(../img/img\ 18.jpg);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -1022,7 +954,7 @@ margin: 0;
 }
 
 .grid-item:hover {
-    transform: translateY(-15px);
+    transform: translateY(0px);
 }
 
 
@@ -1030,16 +962,23 @@ margin: 0;
 
 .grid-item:nth-child(1) {
     grid-area: a;
-    transform: translateX(5px);
+    transform: translateX(0px);
+    .descripcion {
+        display: none;
+
+    }
 }
 
 .grid-item:nth-child(1):hover {
-    transform: translateX(5px) translateY(-15px);
+    transform: translateX(0px) translateY(-15px);
+    .descripcion {
+        display: flex;
+    }
 }
 .grid-item:nth-child(2) {
     grid-area: b;
-    width: 100px;
-    height: 250px;
+    width: 150px;
+    height: 300px;
     background: url(../img/img\ 8.jpg);
     background-position: center;
     background-size: cover;
@@ -1049,9 +988,9 @@ margin: 0;
 }
 .grid-item:nth-child(3) {
     grid-area: c;
-    width: 90px;
-    height: 100px;
-    background: url(../img/img\ 41.JPG);
+    width: 100px;
+    height: 150px;
+    background: url(../img/img\ 41.jpg);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -1059,8 +998,8 @@ margin: 0;
 .grid-item:nth-child(4) {
     grid-area: d;
     width: 100px;
-    height: 90px;
-    background: url(../img/img\ 14.JPG);
+    height: 100px;
+    background: url(../img/img\ 14.jpg);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -1068,25 +1007,31 @@ margin: 0;
 .grid-item:nth-child(5) {
     grid-area: e;
 
-    background: url(../img/img\ 40.JPG);
+    background: url(../img/img\ 40.jpg);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
 }
+
+
+
+
+/* resto */
+
 
 .main {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    transform: translateY(-200px);
+    transform: translateY(-350px);
 
 }
 
 .titulo {
     display: flex;
     text-align: center;
-    font-size: 44px;
+    font-size: 70px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-weight: 900;
     color: #ececec;
@@ -1104,23 +1049,24 @@ margin: 0;
 .parrafos {
     color: #fff;
     display: grid;
+    text-align: center;
+    font-size: 15px;
+    padding: 15px;
     grid-template-columns: 1fr 1fr;
     justify-items: stretch;
     align-items: stretch;
     column-gap: 20px;
-    row-gap: 20px;
+    row-gap: 10px;
 }
 
 
 .parrafos p {
     opacity: .7;
-    text-align: center;
-    font-size: 15px;
     view-timeline-name: --image;
     view-timeline-axis: block ;
     animation-timeline: --image;
     animation-name: marco-hs;
-    animation-range: entry 0% cover 30%;
+    animation-range: entry 45% cover 30%;
     animation-fill-mode: both;
 }
 
@@ -1158,17 +1104,18 @@ margin: 0;
 }
 
 .titulo-horario h2 {
-    font-size: 45px;
+    font-size: 35px;
     transform: translateX(5%);
+    transform: translateY(-200px);
     color: #F4B446;
 }
 
 .titulo-horario h1 {
-    font-size: 155px;
+    font-size: 35px;
     scale: 1;
     color: transparent;
-    transform: translateY(-125px);
-    -webkit-text-stroke: 2px #F4B446;
+    transform: translateY(-240px);
+    -webkit-text-stroke: 1.5px #F4B446;
 
 }
 
@@ -1200,6 +1147,13 @@ margin: 0;
     max-width: 100%;
 }
 
+.familia-pastoral {
+
+
+    margin-bottom: 200px;
+
+}
+
 .ministerios {
     margin-top: 15%;
     display: flex;
@@ -1217,8 +1171,9 @@ margin: 0;
     text-align: center;
     padding: 20px;
     border-radius: 25px;
-    background: #0f2631;
-    box-shadow: 0 5px 5px #030b0f4d;
+    border-right: solid 1px #ffffff38;
+    background: #0d1e25da;
+    box-shadow: 0 5px 5px #081c254d;
     perspective: 1000px;
     margin: 20px;
     view-timeline-name: --image;
@@ -1283,7 +1238,7 @@ margin: 0;
 
   .contedido-ministerios {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr ;
     justify-items: stretch;
     align-items: stretch;
     column-gap: 20px;
@@ -1304,20 +1259,21 @@ margin: 0;
     text-align: center;
     padding: 20px;
     border-radius: 25px;
-    background: #0f2631;
+    border-right: solid 1px #ffffff38;
+    background: #0d1e25da;
     box-shadow: 0 5px 5px #030b0f4d;
     color: #fff;
   }
 
   .ministerio-sector:last-child{
-    transform: translateX(50%);
+    transform: translateX(0);
   }
 
 
   .imagen-mn {
-    width: 500px;
-    height: 300px;
-
+    width: 300px;
+    height: 190px;
+    border-right: solid 1px #ffffff5d;
     background-position: center;
     background-size: cover;
     border-radius: 15px;
@@ -1333,7 +1289,7 @@ margin: 0;
 
   .marco-img-2024{
     width: 100%;
-    height: 800px;
+    height: 1px;
     background: url(../img/img\ 32.png);
     background-size: cover;
     background-attachment: unset;
@@ -1386,11 +1342,18 @@ margin: 0;
         margin-top: 50px;
         display: flex;
         gap: 25px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+
+        justify-content: center;
+        align-items: center;
+        text-align: center;
     }
     
     .footer-nav a {
         text-decoration: none;
         color: #fff;
+        
     }
     
     
@@ -1456,6 +1419,7 @@ margin: 0;
         font-size: 15px;
         opacity: 0.5;
     
-    }   
+    }
+  
     }
     

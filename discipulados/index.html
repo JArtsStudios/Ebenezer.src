@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Discipulados - Iglesia</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <h1>Discipulados por barrios</h1>
+    <p class="subtitle">Selecciona un barrio para ver los discipulados y ubicarlos en el mapa</p>
+  </header>
+
+  <main class="layout">
+    <aside class="barrios-panel" aria-label="Barrios">
+      <h2>Barrios</h2>
+      <div class="btn-list" id="barriosList">
+        <!-- Botones generados por JS -->
+      </div>
+    </aside>
+
+    <section class="detalle-panel" id="detallePanel" aria-live="polite">
+      <div class="detalle-header">
+        <h2 id="detalleTitulo">Selecciona un barrio</h2>
+        <p id="detalleSub">Aquí aparecerán los discipulados disponibles.</p>
+      </div>
+
+      <div class="contenido">
+        <div class="grupos" id="gruposContainer">
+          <!-- Tarjetas de discipulados generadas por JS -->
+        </div>
+
+        <div class="mapa">
+          <div class="mapa-wrapper">
+            <iframe
+              id="mapIframe"
+              title="Mapa de Google"
+              src="https://www.google.com/maps?q=Honduras&output=embed"
+              allowfullscreen
+              loading="lazy"
+            ></iframe>
+          </div>
+          <p class="mapa-pista">Haz clic en "Ver en mapa" en algún discipulado para cargar su ubicación.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <small>Hecho para la iglesia · Diseño responsivo</small>
+  </footer>
+
+  <script src="js.js"></script>
+</body>
+</html>

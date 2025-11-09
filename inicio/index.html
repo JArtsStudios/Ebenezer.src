@@ -25,48 +25,33 @@
 <body>
 
 
-        <!-- <div class="parallax-container">
-            <div class="parallax-layer" id="layer1">
-                <img src="img/parallax1.png" alt="">
-            </div>
-            <div class="parallax-layer" id="layer2">
-                <h1>SOMOS EBENEZER</h1>
-            </div>
-            <div class="parallax-layer" id="layer3">
-                <img src="img/parallax2.png" alt="">
-            </div>
-            <div class="parallax-layer" id="layer4">
-                <img src="img/parallax3.png" alt="">
-            </div>
-        </div> -->
-        <div class="navbar">
-            <div class="logo">
-                <img src="../img/logo ebenezer santa rita.png" alt="Logo Ebenezer">
-            </div>
-            <div class="menu-icon" id="menu-icon">
-                &#9776;
-            </div>
-            <div class="nav-links" id="nav-links">
-                <a href="../ministerio/">Ministerio</a>
-                <a href="../escuela/">Escuela</a>
-                <a href="../multimedia/">Multimedia</a>
-                <a href="../oraciones.html">Oraciones</a>
-                <a href="../eventos.html">Eventos</a>
-                <a href="../social/">Social</a>
+   <!-- Dios les bendiga este es el Navbar o Barra de navegacion aqui no hay que hacer cambios -->
+<nav class="navbar">
+    <div class="logo"><img src="../img/logo ebenezer santa rita.png" alt="" class="logotipo"></div>
 
-            </div>
+    <button class="menu-toggle" id="menu-toggle">☰</button>
 
-            <div class="buscador">
-                <div class="search-container">
-                    <input type="text" id="searchInput" placeholder="Buscar..." autocomplete="off" />
-                    <i class="fas fa-search search-icon"></i>
-                </div>
-                <div id="searchResults"></div>
+    <div class="nav-links" id="nav-links">
+                <div class="buscador">
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Buscar..." autocomplete="off" />
+                <i class="fas fa-search search-icon"></i>
             </div>
-            
-
+            <div id="searchResults"></div>
         </div>
-        <div id="cookie-banner" class="cookie-banner">
+      <a href="../ministerio/">Ministerio</a>
+      <a href="../escuela/">Escuela</a>
+      <a href="../multimedia/">Multimedia</a>
+      <a href="../oraciones/">Oraciones</a>
+      <a href="../eventos/">Eventos</a>
+      <a href="../social/">Social</a>
+
+    </div>
+  </nav>
+
+    <!-- Aqui acaba el navbar mas el buscador solo HTML -->
+
+        <!-- <div id="cookie-banner" class="cookie-banner">
             <h1>
                 Uso de almacenamiento local en nuestro sitio web
             </h1>
@@ -79,22 +64,22 @@
             </h6>
  
             <button id="accept-cookies">Aceptar</button>
-          </div>
+          </div> -->
           
         
         <div class="content">
-            <!-- Contenido de tu página -->
-
+            
+     <!-- Esta es la seccion de imagenes del inicio solo hacer cambios de ruta en el IMG solo si se decide cambiar a otra imagen y el texto en <H2> y segundo <p> de cada item, de querer agregar uno mas solo copiar y pegarlo ya que todos los items usan la misma clase -->
         <div class="slider">
-            <!-- list Items -->
+            <!-- lista Items -->
             <div class="list">
                 <div class="item active">
-                    <img src="../img/img 1.jpg">
+                    <img src="../img/Pastor y Pastora.jpg">
                     <div class="content">
                         <p>Somos Ebenezer</p>
                         <h2>Cobertura</h2>
                         <p>
-                            Nuestra Iglesia esta bajo la covertura de nuestro Pastor Olman Santos. <br>
+                            Nuestra Iglesia esta bajo la covertura de la familia Pastoral<br> Nuestro Pastor Olman Santos y Pastora Karen Santos
 
                         </p>
                     </div>
@@ -153,15 +138,15 @@
                     </div>
                 </div>
             </div>
-            <!-- button arrows -->
+            <!-- botones de cambio  -->
             <div class="arrows">
                 <button id="prev"><</button>
                 <button id="next">></button>
             </div>
-            <!-- thumbnail -->
+            <!-- miniaturas si cambia de imagen al item principal tambien a la Thumbnail solo modificar el la ruta del <img> -->
             <div class="thumbnail">
                 <div class="item active">
-                    <img src="../img/img 1.jpg">
+                    <img src="../img/Pastor y Pastora.jpg">
                     <div class="content">
                         
                     </div>
@@ -199,11 +184,59 @@
             </div>
         </div>
     
+        <!-- <div class="marquee">
+            <span>Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • </span>
+            
+          </div> -->
     
-    
-    
+   <!-- Area de Novedades solo modificar el <img> , <h2> y <p> de igual manera si quiere agregar mas solo copiar y pegar usan la misma clase -->
+        <!-- <section class="novedades-section" id="novedades">
+            <div class="novedades-slide novedades-active">
+              <div class="novedades-blur-bg" style="background-image: url('../img/semanadevocional.jpg');"></div>
+              <div class="novedades-content">
+                <img class="img-novedad" src="../img/semanadevocional.jpg" alt="Novedad 1">
+                <div class="novedades-text">
+                  <h2>Semana Devocional</h2>
+                  <p>Estamos en nuestra semana dedicada a nuestro encuentro con Jesus </p>
+                </div>
+              </div>
+            </div>
         
+            <div class="novedades-slide">
+              <div class="novedades-blur-bg" style="background-image: url('../img/Rhema.jpg');"></div>
+              <div class="novedades-content">
+                <img class="img-novedad" src="../img/Rhema.jpg" alt="Novedad 2">
+                <div class="novedades-text">
+                  <h2>Rhema</h2>
+                  <p>"La Llenura del Espiritu Santo es <br> el Retorno al <br> verdadero control"</p>
+                </div>
+              </div>
+            </div>
+        
+            <div class="novedades-slide">
+              <div class="novedades-blur-bg" style="background-image: url('../img/Besor 2025.jpg');"></div>
+              <div class="novedades-content">
+                <img class="img-novedad" src="../img/Besor 2025.jpg" alt="Novedad 3">
+                <div class="novedades-text">
+                  <h2>Besor 2025</h2>
+                  <p>Nuestro Pastor estara comportatiendo la <br> Palabra en Besor 2025 en Ebenezer Corpus, La Union, Copan. Honduras</p>
+                </div>
+              </div>
+            </div>
+        
+            <div class="novedades-controls">
+              <button onclick="novedadesChangeSlide(-1)">‹</button>
+              <button onclick="novedadesChangeSlide(1)">›</button>
+            </div>
+          </section>
 
+
+          <div class="marquee">
+            <span>Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • Novedades • </span>
+            
+          </div> -->
+        
+<!-- Horarios no hace falta hacer cambios -->
     <div class="hoarios" id="horarios">
         <div class="titulo-container-horarios">
             <div class="titulo-horario">
@@ -265,7 +298,7 @@
 
 
 
-
+<!-- Tampoco aqui hace falta hacer cambios -->
 
     <div class="titulo-container-horarios">
         <div class="titulo-horario">
@@ -286,7 +319,7 @@
 
 
 
-
+     <!-- Secciones solo modificar texto y imagenes de ser necesario -->
 
     <div class="secciones-container">
         <div class="contenedor-base">
@@ -328,7 +361,7 @@
 
    
  
-
+   <!-- No Hace falta cambios -->
 
     <div class="container-ipad">
         <h1>ORACIONES ONLINE</h1>
@@ -339,7 +372,7 @@
     </div>
 
 
-
+<!-- No Hace falta cambios -->
 
     <div class="disipulado-container-scroll" id="discipulados">
         <div class="titulo">
@@ -350,14 +383,14 @@
       
         </div>
         <div class="boton-disipulados">
-            <a href="../disipulados.html">Buscar Disipulados Cerca</a>
+            <a href="../Mantenimiento/">Buscar Disipulados Cerca</a>
         </div>
     </div>
 
 
 
 
-
+<!-- No Hace falta cambios -->
 
     <footer>
         <div class="container-footer">
@@ -367,11 +400,11 @@
             </div>
             <div class="footer-nav">
                 <a href="#">Inicio</a>
-                <a href="ministerio.html">Ministerio</a>
-                <a href="ministerio.html">Multimedia</a>
-                <a href="ministerio.html">Escuela</a>
-                <a href="ministerio.html">Oraciones</a>
-                <a href="ministerio.html">Eventos</a>
+                <a href="../ministerio/">Ministerio</a>
+                <a href="../multimedia/">Multimedia</a>
+                <a href="../escuela/">Escuela</a>
+                <a href="../oraciones/">Oraciones</a>
+                <a href="../eventos/">Eventos</a>
                 <a href="ministerio.html">Social</a>
             </div>
         </div>
@@ -394,11 +427,12 @@
         </div>
         <div class="creditos">
             <h3>Sitio-Web desarrollado por: <br> J Arts Studio </h3>
-            <a href="https://jartsstudios.github.io/J-Arts-Studios/">©J Arts Studios 2024</a>
+            <a href="https://jartsstudios.github.io/J-Arts-Studios/">©J Arts Studios 2023</a>
         </div>
     </footer>
 </div>
 
         <script src="../js/inicio.js" ></script>
+        <script src="../js/buscador.js"></script>
 </body>
 </html>
