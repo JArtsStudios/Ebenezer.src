@@ -6,56 +6,28 @@
     <title>Perfil de Usuario</title>
     <link rel="stylesheet" href="../../css/perfil.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
+<header>
+    <div class="salir">
+        <a href="#" onclick="window.history.back(); return false;">
+            <i class="fas fa-arrow-left"></i>
+            <span>Salir</span>
+        </a>
+    </div>
+</header>
 
+<main class="contenido">
+    <h1 id="username">¡Hola, Usuario!</h1>
 
+    <div class="progreso-container">
+        <h2>Progreso de Lecciones</h2>
+        <div class="progreso"></div>
+    </div>
+</main>
 
-
-    <header>
-        <div class="salir">
-            <a href="#" onclick="window.history.back(); return false;">
-                <div class="icono-salir"><h1><</h1></div>
-    
-            </a>
-            <div class="salir-h1">
-                <h1>Salir</h1>
-            </div>
-        
-        </div>
-        
-    </header>
-
-        <div class="contenido">
-          
-        
-        </div>
-
-   <div class="progreso-container">
-    <h1>Progreso</h1>
-    <div class="progreso"></div>
-   </div>
-
-
-    
-    
-
-
- 
-
-    <script src="../../js/perfil.js"></script>
+<script src="../../js/perfil.js"></script>
 </body>
 </html>

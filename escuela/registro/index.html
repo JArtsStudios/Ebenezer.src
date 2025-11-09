@@ -279,33 +279,38 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-    <script>
-        // Inicializar EmailJS
-        emailjs.init("0s7txQoFEkZAkAaZP"); // Reemplaza con tu User ID de EmailJS
+ <script>
+    // Inicializar EmailJS
+    emailjs.init("0s7txQoFEkZAkAaZP"); // Reemplaza con tu User ID de EmailJS
 
-        document.getElementById("contactForm").addEventListener("submit", function(event) {
-    event.preventDefault();
+    document.getElementById("contactForm").addEventListener("submit", function(event) {
+        event.preventDefault();
 
-    const serviceID = "service_wltl9a2"; // Reemplaza con tu Service ID
-    const templateID = "template_fmrepao"; // Reemplaza con tu Template ID
+        const serviceID = "service_wltl9a2"; // Reemplaza con tu Service ID
+        const templateID = "template_fmrepao"; // Reemplaza con tu Template ID
 
-    const params = {
-        congregas: document.querySelector('input[name="congregas"]:checked').value,
-        nombre: document.getElementById("nombre").value,
-        telefono: document.getElementById("telefono").value,
-        correo: document.getElementById("correo").value,
-    };
+        const nombre = document.getElementById("nombre").value;
 
-    emailjs.send(serviceID, templateID, params)
-        .then(() => {
-            alert("Formulario enviado correctamente.");
-            document.getElementById("contactForm").reset();
-        })
-        .catch((error) => {
-            alert("Hubo un error al enviar el formulario: " + error.text);
-        });
-});
+        const params = {
+            congregas: document.querySelector('input[name="congregas"]:checked').value,
+            nombre: nombre,
+            telefono: document.getElementById("telefono").value,
+            correo: document.getElementById("correo").value,
+        };
 
-    </script>
+        // Guardar nombre en localStorage
+        localStorage.setItem('nombre', nombre);
+
+        emailjs.send(serviceID, templateID, params)
+            .then(() => {
+                alert("Formulario enviado correctamente.");
+                document.getElementById("contactForm").reset();
+            })
+            .catch((error) => {
+                alert("Hubo un error al enviar el formulario: " + error.text);
+            });
+    });
+</script>
+
 </body>
 </html>
