@@ -1,315 +1,265 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario</title>
-    <style>
-        html {
-            scrollbar-width: none;
-            scroll-behavior: smooth;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="../../img/logo pequeño.png">
+<title>Registro</title>
+<style>
+    /* RESET */
+    * { margin:0; padding:0; box-sizing:border-box; }
 
-        body {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            font-family: Arial, sans-serif;
-      background: #111;
-      overflow: hidden;
-      position: relative;
-            align-items: center;
-            justify-content: center;
-
-        }
-
-    /* Capa con el patrón */
-    .pattern {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 200%;
-      height: 200%;
-      background-image: 
-        linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px),
-        linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px);
-      background-size: 40px 40px; /* tamaño de la cuadricula */
-      animation: moveGrid 5s  linear infinite;
-      z-index: -1;
+    html, body {
+        height: 100%;
+        font-family: 'Arial', sans-serif;
+        background: #0f1115;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
     }
 
-    @keyframes moveGrid {
-      from { transform: translate(0, 0); }
-      to { transform: translate(-40px, -40px); }
+    header {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        z-index: 10;
     }
 
+    .salir a {
+        text-decoration: none;
+        color: #fff;
+        font-weight: 600;
+        font-size: 1rem;
+        padding: 6px 12px;
+        border: 1px solid #fff2;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
 
-        header {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 999;
-         }
+    .salir a:hover {
+        background: #FFBE5C;
+        border-color: #FFBE5C;
+        color: #111;
+    }
 
-        .salir {
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: row;
-            justify-content: start;
-            align-items: center;
-            margin-left: 10%;
-            margin-top: 5%;
-            gap: 15px;
-            transform: translateX(-15px);
-            transition: .2s ease-in-out;
-            z-index: 999;
-        }
+    /* FORM CARD */
+    form {
+        background: #1a1a1a;
+        border-radius: 20px;
+        padding: 40px 30px;
+        width: 100%;
+        max-width: 420px;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
 
-        .salir:hover {
-            transform: translateX(5px);
-            .salir-h1 {
-                color: #fff;
-                opacity: 1;
-                transform: translateX(95px);
-            }
+    form:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+    }
 
-            .icono-salir {
-                padding: 5px 35px;
-                background: #ffffff00;
-                border-radius: 50px;
-            }
-            
+    h2 {
+        text-align: center;
+        margin-bottom: 15px;
+        font-weight: 600;
+        color: #FFBE5C;
+        font-size: 1.8rem;
+    }
 
-        }
+    label {
+        font-size: 0.95rem;
+        font-weight: 500;
+        margin-bottom: 8px;
+    }
 
+    input[type="text"],
+    input[type="tel"],
+    input[type="email"] {
+        padding: 14px 18px;
+        border-radius: 12px;
+        border: none;
+        background: #252525;
+        color: #fff;
+        font-size: 1rem;
+        width: 100%;
+        transition: all 0.2s ease;
+    }
 
-        .salir a {
-            text-decoration: none;
-            color: #fff;
-        }
+    input[type="text"]:focus,
+    input[type="tel"]:focus,
+    input[type="email"]:focus {
+        outline: 2px solid #FFBE5C;
+        background: #2a2a2a;
+    }
 
-        .icono-salir {
-            padding: 5px 35px;
-            background: #ffffff00;
-            border-radius: 50px;
-            transition: .3s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
+    /* CUSTOM RADIO BUTTONS */
+    .tecongregas {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        margin-bottom: 15px;
+    }
 
-        .icono-salir h1 {
-            scale: 2;
-            font-family: "Comfortaa", sans-serif;
-            font-weight: 100;
-        }
+    .radio-container {
+        position: relative;
+        padding-left: 35px;
+        cursor: pointer;
+        user-select: none;
+        font-size: 0.95rem;
+        display: flex;
+        align-items: center;
+        transition: transform 0.2s ease;
+    }
 
-        .salir-h1 {
-            color: #fff;
-            opacity: 0;
-            transform: translateX(55px);
-            transition: .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
+    .radio-container:hover {
+        transform: scale(1.05);
+    }
 
-        h1 {
-            position: fixed;
-            transform: translateX(84px) scale(1.2);
-            
-            
-        }
+    .radio-container input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+    }
 
+    .checkmark {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        height: 20px;
+        width: 20px;
+        background-color: #252525;
+        border-radius: 50%;
+        border: 2px solid #FFBE5C;
+        transition: all 0.3s ease;
+    }
 
+    .radio-container input:checked ~ .checkmark {
+        background: #FFBE5C;
+        box-shadow: 0 0 8px #FFBE5Caa;
+    }
 
-        .tecongregas {
-            display: flex;
-            flex-direction: row;
-        }
+    .checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+    }
 
+    .radio-container input:checked ~ .checkmark:after {
+        display: block;
+    }
 
+    .radio-container .checkmark:after {
+        top: 5px;
+        left: 5px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #111;
+    }
 
-        form {
-            max-width: 400px;
-            margin: auto;
-            border-radius: 100px;
-            border-top: 1.5px  solid #ffffff73;
-            backdrop-filter: blur(2.5px) url(#filtroVidrioMascara) url(#chromatic-aberration) ;
-            box-shadow: inset 0 0 3px .5px #ffffff2d;
-            filter: brightness(1);
-            padding: 25px 35px 35px 25px ;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            border-radius: 25px;
-            color: #fff;
-        }
-        label {
-            display: block;
-            margin-bottom: 8px;
-        }
-        input, button {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
-            border-radius: 50px;
-            border: none;
-        }
-        button {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-            width: 90px;
-            border-radius: 50px;
-            transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.9s;
-        }
-        button:hover {
-            border-radius: 50px;
-            background-color: #3ff548;
-            box-shadow: 0 0 20px #b6fcb9;
-            filter: blur(0.4px);
-            width: 150px;
-        }
-        button:active {
-            border-radius: 50px;
-            background-color: #68fd6f;
-            box-shadow: 0 0 20px #b6fcb9;
-            filter: blur(2.4px);
-            width: 100px; 
-        }
-    </style>
+    /* BUTTON */
+    button {
+        padding: 14px 25px;
+        border-radius: 25px;
+        border: none;
+        background: #FFBE5C;
+        color: #111;
+        font-weight: 600;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        align-self: center;
+        min-width: 150px;
+    }
+
+    button:hover {
+        background: #ff9c1a;
+        box-shadow: 0 0 15px #FFBE5C66;
+        transform: translateY(-2px);
+    }
+
+    button:active {
+        background: #e68a00;
+        box-shadow: 0 0 5px #FFBE5C66;
+        transform: translateY(0);
+    }
+
+    @media (max-width: 500px) {
+        form { padding: 30px 20px; gap: 20px; }
+        .tecongregas { flex-direction: column; }
+        button { width: 100%; }
+    }
+</style>
 </head>
 <body>
 
+<header>
+    <div class="salir">
+        <a href="/escuela/">&#8592; Volver</a>
+    </div>
+</header>
 
-    <div class="pattern"></div>
-  🔳 Patrón en movimiento
+<form id="contactForm">
+    <h2>Registro</h2>
 
-    <header>
-        <div class="salir">
-            <a href="/escuela/">
-                <div class="icono-salir"><h1><</h1></div>
-    
-            </a>
-            <div class="salir-h1">
-                <h1>Salir</h1>
-            </div>
-        
-        </div>
-        <div id="profile">
+    <label>¿Te congregas en alguna iglesia?</label>
+    <div class="tecongregas">
+        <label class="radio-container">Sí
+            <input type="radio" name="congregas" value="Sí" required>
+            <span class="checkmark"></span>
+        </label>
+        <label class="radio-container">No
+            <input type="radio" name="congregas" value="No" required>
+            <span class="checkmark"></span>
+        </label>
+    </div>
 
-        </div>
-    </header>
+    <label>Nombre</label>
+    <input type="text" name="nombre" id="nombre" required>
 
+    <label>Teléfono</label>
+    <input type="tel" name="telefono" id="telefono" required>
 
+    <label>Correo electrónico</label>
+    <input type="email" name="correo" id="correo">
 
-    <form id="contactForm">
-        <label>¿Te congregas en alguna iglesia?</label>
-        <div class="tecongregas">
-        <input type="radio" name="congregas" value="Sí" required> Sí<br>
-        <input type="radio" name="congregas" value="No" required> No<br><br>
-        </div>
+    <button type="submit">Registrar</button>
+</form>
 
-        <label>¿Cuál es tu nombre?</label>
-        <input type="text" name="nombre" id="nombre" required>
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+emailjs.init("0s7txQoFEkZAkAaZP");
 
-        <label>Danos tu número para contactarte</label>
-        <input type="tel" name="telefono" id="telefono" required>
+document.getElementById("contactForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+    const serviceID = "service_wltl9a2";
+    const templateID = "template_fmrepao";
 
-        <label>Danos tu correo para contactarte</label>
-        <input type="email" name="correo" id="correo" >
+    const nombre = document.getElementById("nombre").value;
 
-        <button type="submit">Enviar</button>
-    </form>
+    const params = {
+        congregas: document.querySelector('input[name="congregas"]:checked').value,
+        nombre: nombre,
+        telefono: document.getElementById("telefono").value,
+        correo: document.getElementById("correo").value,
+    };
 
-     <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute;">
-    <filter id="filtroVidrioMascara" x="-50%" y="-50%" width="200%" height="200%">
-      
-      <!-- 1. Turbulencia (ondas) -->
-      <feTurbulence type="fractalNoise" baseFrequency="0.01" numOctaves="2" result="ruido" />
+    localStorage.setItem('nombre', nombre);
 
-      <!-- 2. Máscara radial: centro blanco (sin efecto), bordes negros (con efecto) -->
-      <feImage result="mascaraRadial"
-        href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJhZGlhbEdyYWRpZW50IGlkPSJyIiBjeD0iMTAwIiBjeT0iMTAwIiByPSI4MCI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjZmZmIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMDAwIi8+PC9yYWRpYWxHcmFkaWVudD48cmVjdCBmaWxsPSJ1cmwoI3IpIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIvPjwvc3ZnPg=="
-        preserveAspectRatio="none"
-      />
-
-      <!-- 3. Composición: ondas * máscara radial -->
-      <feComposite in="ruido" in2="mascaraRadial" operator="in" result="ondasLimitadas" />
-
-      <!-- 4. Aplicar desplazamiento -->
-      <feDisplacementMap in="SourceGraphic" in2="ondasLimitadas" scale="150"
-        xChannelSelector="R" yChannelSelector="G" />
-    </filter>
-  </svg>
-
-    
-
-<svg width="0" height="0" style="position:absolute;">
-  <defs>
-    <filter id="chromatic-aberration" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
-      <!-- Desplazar rojo -->
-      <feOffset in="SourceGraphic" dx="-2" dy="0" result="red" />
-      <feColorMatrix in="red" type="matrix" values="
-         1 0 0 0 0
-         0 0 0 0 0
-         0 0 0 0 0
-         0 0 0 1 0" result="redOnly" />
-      
-      <!-- Desplazar verde -->
-      <feOffset in="SourceGraphic" dx="0" dy="0" result="green" />
-      <feColorMatrix in="green" type="matrix" values="
-         0 0 0 0 0
-         0 1 0 0 0
-         0 0 0 0 0
-         0 0 0 1 0" result="greenOnly" />
-      
-      <!-- Desplazar azul -->
-      <feOffset in="SourceGraphic" dx="2" dy="0" result="blue" />
-      <feColorMatrix in="blue" type="matrix" values="
-         0 0 0 0 0
-         0 0 0 0 0
-         0 0 1 0 0
-         0 0 0 1 0" result="blueOnly" />
-      
-      <!-- Combinar los colores -->
-      <feBlend in="redOnly" in2="greenOnly" mode="screen" result="rg" />
-      <feBlend in="rg" in2="blueOnly" mode="screen" />
-    </filter>
-  </defs>
-</svg>
-
-
-    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
- <script>
-    // Inicializar EmailJS
-    emailjs.init("0s7txQoFEkZAkAaZP"); // Reemplaza con tu User ID de EmailJS
-
-    document.getElementById("contactForm").addEventListener("submit", function(event) {
-        event.preventDefault();
-
-        const serviceID = "service_wltl9a2"; // Reemplaza con tu Service ID
-        const templateID = "template_fmrepao"; // Reemplaza con tu Template ID
-
-        const nombre = document.getElementById("nombre").value;
-
-        const params = {
-            congregas: document.querySelector('input[name="congregas"]:checked').value,
-            nombre: nombre,
-            telefono: document.getElementById("telefono").value,
-            correo: document.getElementById("correo").value,
-        };
-
-        // Guardar nombre en localStorage
-        localStorage.setItem('nombre', nombre);
-
-        emailjs.send(serviceID, templateID, params)
-            .then(() => {
-                alert("Formulario enviado correctamente.");
-                document.getElementById("contactForm").reset();
-            })
-            .catch((error) => {
-                alert("Hubo un error al enviar el formulario: " + error.text);
-            });
-    });
+    emailjs.send(serviceID, templateID, params)
+        .then(() => {
+            alert("Formulario enviado correctamente.");
+            document.getElementById("contactForm").reset();
+        })
+        .catch((error) => {
+            alert("Hubo un error al enviar el formulario: " + error.text);
+        });
+});
 </script>
 
 </body>
