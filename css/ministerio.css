@@ -227,7 +227,7 @@ body {
 }
 
 #searchInput {
-    width: 30%;
+    width: 55%;
     padding: 10px 40px 10px 20px;
     background: rgba(255, 255, 255, 0.651);
     backdrop-filter: blur(5.5px);
@@ -240,11 +240,11 @@ body {
 }
 
 #searchInput:hover {
-    width: 40%;
+    width: 70%;
 }
 
 #searchInput:focus {
-    width: 70%;
+    width: 100%;
     outline: none;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
@@ -483,6 +483,7 @@ body {
 
 .parrafos p {
     opacity: .7;
+    text-align: center;
     view-timeline-name: --image;
     view-timeline-axis: block ;
     animation-timeline: --image;
