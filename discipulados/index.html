@@ -8,8 +8,8 @@
 </head>
 <body>
   <header class="site-header">
-    <h1>Discipulados por barrios</h1>
-    <p class="subtitle">Selecciona un barrio para ver los discipulados y ubicarlos en el mapa</p>
+    <h1>Discipulados por Barrios</h1>
+    <p class="subtitle">Selecciona un barrio para ver los discipulados y sus ubicaciones</p>
   </header>
 
   <main class="layout">
@@ -18,6 +18,7 @@
       <div class="btn-list" id="barriosList">
         <!-- Botones generados por JS -->
       </div>
+      <button class="btn-salir" onclick="location.href='../inicio/'">Salir</button>
     </aside>
 
     <section class="detalle-panel" id="detallePanel" aria-live="polite">
@@ -29,19 +30,6 @@
       <div class="contenido">
         <div class="grupos" id="gruposContainer">
           <!-- Tarjetas de discipulados generadas por JS -->
-        </div>
-
-        <div class="mapa">
-          <div class="mapa-wrapper">
-            <iframe
-              id="mapIframe"
-              title="Mapa de Google"
-              src="https://www.google.com/maps?q=Honduras&output=embed"
-              allowfullscreen
-              loading="lazy"
-            ></iframe>
-          </div>
-          <p class="mapa-pista">Haz clic en "Ver en mapa" en algún discipulado para cargar su ubicación.</p>
         </div>
       </div>
     </section>
