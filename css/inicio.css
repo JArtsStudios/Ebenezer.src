@@ -581,8 +581,7 @@ body {
     z-index: 100;
 }
 .arrows button{
-    background-color: #eee5;
-    border: none;
+    background-color: #ffffff13;
     font-family: monospace;
     width: 40px;
     height: 40px;
@@ -590,6 +589,14 @@ body {
     font-size: x-large;
     color: #eee;
     transition: .5s;
+    border-style: none;
+     border-bottom: solid 1px  #ffffff00;
+    border-top: solid 1px  #fff;
+    filter: brightness(1);
+    box-shadow: inset 0 0 5px #ffffff6b;
+    backdrop-filter: blur(0.5px) url(#filtroVidrioMascara) url(#chromatic-aberration) ;
+    transition: all  .4s cubic-bezier(0.19, 1, 0.22, 1);
+    -webkit-backdrop-filter: blur(4.5px);
 }
 .arrows button:hover{
     background-color: #eee;
@@ -1149,6 +1156,164 @@ body {
 
 
 
+.new-ipad-container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: -35%;
+}
+
+
+.new-ipad-title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 45px;
+            view-timeline-name: --image;
+    view-timeline-axis: block ;
+    animation-timeline: --image;
+    animation-name: new-ipad-h1;
+    animation-range: entry 20% cover 80%;
+    animation-fill-mode: both;
+}
+
+
+.new-ipad-container h1 {
+   font-size: 45px;
+   scale: 4;
+   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+   z-index: 1;
+   color: #fff;
+}
+
+
+.new-ipad-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    z-index: 999;
+    view-timeline-name: --image;
+    view-timeline-axis: block ;
+    animation-timeline: --image;
+    animation-name: new-ipad-button;
+    animation-range: entry 10% cover 30%;
+    animation-fill-mode: both;
+    
+}
+
+.new-ipad-button a {
+    text-decoration: none;
+    background: #0000005b;
+    font-size: 25px;
+    color: #fff;
+    padding: 10px 30px;
+    border-radius: 50px;
+    border-bottom: solid 1px  #ffffff00;
+    border-top: solid 1px  #fff;
+    filter: brightness(1);
+    box-shadow: inset 0 0 5px #ffffff6b;
+    backdrop-filter: blur(0.5px) url(#filtroVidrioMascara) url(#chromatic-aberration) ;
+    transition: all  .4s cubic-bezier(0.19, 1, 0.22, 1);
+    -webkit-backdrop-filter: blur(4.5px);
+
+}
+
+.new-ipad-button a:hover {
+    text-decoration: none;
+    background: #0000005b;
+    font-size: 25px;
+    color: #fff;
+    padding: 10px 30px;
+    border-radius: 50px;
+    border-top: solid 1px  #ffffff;
+    border-bottom: solid 1px  #fff;
+    box-shadow: inset 0 0 6px #ffffff96, 0 0 5px #ffffff50;
+    text-shadow: 0 0 25px #fff;
+    filter: brightness(1.5);
+    backdrop-filter: blur(0.5px) url(#filtroVidrioMascara) url(#chromatic-aberration) ;
+
+}
+
+.new-ipad {
+    display: flex;
+    justify-content: center;
+    transform: translateY(49px);
+    z-index: 99;
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 0%;
+        view-timeline-name: --image;
+    view-timeline-axis: block ;
+    animation-timeline: --image;
+    animation-name: new-ipad;
+    animation-range: entry 20% cover 50%;
+    animation-fill-mode: both;
+}
+
+.new-ipad img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+
+
+@keyframes new-ipad  {
+    from {
+        
+    transform: translateY(-419px);
+
+    }
+
+    to {
+    transform: translateY(50px);
+    }
+}
+
+
+@keyframes new-ipad-h1  {
+    from {
+        
+    transform: translateY(655px);
+
+    }
+
+    to {
+    transform: translateY(1055px);
+    }
+}
+
+
+@keyframes new-ipad-button  {
+    0% {
+        
+    transform: translateY(-255px) scale(0);
+
+    }
+
+    50% {
+    transform: translateY(-255px) scale(1);
+
+    }
+
+    100% {
+    transform: translateY(-65px) scale(1);
+
+    }
+}
+
+
+
+
+
+
+
+
 
 
 
@@ -1565,6 +1730,175 @@ body {
          opacity: 1;
     }
 }
+
+
+
+
+
+
+
+.new-ipad-container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: -35%;
+}
+
+
+.new-ipad-title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+            view-timeline-name: --image;
+    view-timeline-axis: block ;
+    animation-timeline: --image;
+    animation-name: new-ipad-h1;
+    animation-range: entry 20% cover 80%;
+    animation-fill-mode: both;
+}
+
+
+.new-ipad-container h1 {
+   font-size: 5px;
+   scale: 11;
+   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+   z-index: 1;
+   color: #fff;
+}
+
+
+.new-ipad-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    z-index: 999;
+    view-timeline-name: --image;
+    view-timeline-axis: block ;
+    animation-timeline: --image;
+    animation-name: new-ipad-button;
+    animation-range: entry 10% cover 30%;
+    animation-fill-mode: both;
+    
+}
+
+.new-ipad-button a {
+    text-decoration: none;
+    background: #0000005b;
+    font-size: 25px;
+    color: #fff;
+    padding: 10px 30px;
+    border-radius: 50px;
+    border-bottom: solid 1px  #ffffff00;
+    border-top: solid 1px  #fff;
+    filter: brightness(1);
+    box-shadow: inset 0 0 5px #ffffff6b;
+    backdrop-filter: blur(0.5px) url(#filtroVidrioMascara) url(#chromatic-aberration) ;
+    transition: all  .4s cubic-bezier(0.19, 1, 0.22, 1);
+    -webkit-backdrop-filter: blur(4.5px);
+
+}
+
+.new-ipad-button a:hover {
+    text-decoration: none;
+    background: #0000005b;
+    font-size: 25px;
+    color: #fff;
+    padding: 10px 30px;
+    border-radius: 50px;
+    border-top: solid 1px  #ffffff;
+    border-bottom: solid 1px  #fff;
+    box-shadow: inset 0 0 6px #ffffff96, 0 0 5px #ffffff50;
+    text-shadow: 0 0 25px #fff;
+    filter: brightness(1.5);
+    backdrop-filter: blur(0.5px) url(#filtroVidrioMascara) url(#chromatic-aberration) ;
+
+}
+
+.new-ipad {
+    display: flex;
+    justify-content: center;
+    transform: translateY(49px);
+    z-index: 99;
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 0%;
+        view-timeline-name: --image;
+    view-timeline-axis: block ;
+    animation-timeline: --image;
+    animation-name: new-ipad;
+    animation-range: entry 0% cover 50%;
+    animation-fill-mode: both;
+}
+
+.new-ipad img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+
+
+@keyframes new-ipad  {
+    from {
+        
+    transform: translateY(-159px);
+
+    }
+
+    to {
+    transform: translateY(50px);
+    }
+}
+
+
+@keyframes new-ipad-h1  {
+    from {
+        
+    transform: translateY(155px);
+
+    }
+
+    to {
+    transform: translateY(325px);
+    }
+}
+
+
+@keyframes new-ipad-button  {
+    0% {
+        
+    transform: translateY(-255px) scale(0);
+
+    }
+
+    50% {
+    transform: translateY(-255px) scale(1);
+
+    }
+
+    100% {
+    transform: translateY(-65px) scale(1);
+
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
