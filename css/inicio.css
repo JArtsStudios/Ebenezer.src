@@ -2117,6 +2117,112 @@ padding: 25px;
 
 
 
+@media screen and (min-width: 579px) and (max-width: 1200px) {
+
+
+
+    .titulo-container-horarios {
+    display: flex;
+    justify-content: end;
+}
+
+
+.titulo-horario {
+    margin-right: 5%;
+    /* view-timeline-name: --image;
+    view-timeline-axis: block ;
+    animation-timeline: --image;
+    animation-name: titulo-hs;
+    animation-range: entry 80% cover 50%;
+    animation-fill-mode: both; */
+}
+
+.titulo-horario h2 {
+    font-size: 65px;
+    transform: translateX(5%);
+    color: #F4B446;
+}
+
+.titulo-horario h1 {
+    font-size: 75px;
+    color: transparent;
+    transform: translateY(-35px);
+    -webkit-text-stroke: 1px #F4B446;
+    margin-bottom: 25%;
+
+}
+
+  
+
+    .new-ipad-title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 7vw;
+            view-timeline-name: --image;
+    view-timeline-axis: block ;
+    animation-timeline: --image;
+    animation-name: new-ipad-h1;
+    animation-range: entry 20% cover 80%;
+    animation-fill-mode: both;
+}
+
+
+.new-ipad-container h1 {
+   font-size: 10px;
+   scale: 11;
+   font-family: "Anton", sans-serif;
+   z-index: 1;
+   color: #fff;
+}
+
+@keyframes new-ipad-h1  {
+    from {
+        
+    transform: translateY(90%);
+
+    }
+
+    to {
+    transform: translateY(125%);
+    }
+}
+
+
+
+
+
+.disipulado-container-scroll {
+
+    background: url(../img/fondo-disipulado.png);
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    padding: 158px 0px;
+    gap: 5px;
+}
+
+
+.titulo h1 {
+    color: #fff;
+    font-size: 15px;
+    text-shadow: 0 3px #1f1f20;
+    scale: 3;
+    transform: translateY(-25%);
+    
+
+
+}
+
+    
+}
+
 @media screen and (min-width: 579px) and (max-width: 1000px) {
 
 
@@ -2185,9 +2291,11 @@ padding: 25px;
     }
 
     to {
-    transform: translateY(115%);
+    transform: translateY(100%);
     }
 }
+
+
 
 
 
@@ -2223,7 +2331,8 @@ padding: 25px;
 
 
 
-@media screen and (min-width: 1000px) and (max-width: 1300px) {
+
+@media screen and (min-width: 1200px) and (max-width: 1300px) {
   
 
     .new-ipad-title {
