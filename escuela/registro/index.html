@@ -1,207 +1,156 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="../../img/logo pequeño.png">
 <title>Registro</title>
 <style>
-    /* RESET */
-    * { margin:0; padding:0; box-sizing:border-box; }
+* { margin:0; padding:0; box-sizing:border-box; }
 
-    html, body {
-        height: 100%;
-        font-family: 'Arial', sans-serif;
-        background: #0f1115;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: #fff;
-    }
+html, body {
+    min-height: 100%;
+    font-family: 'Arial', sans-serif;
+    background: #0f1115;
+    color: #fff;
+}
 
-    header {
-        position: fixed;
-        top: 20px;
-        left: 20px;
-        z-index: 10;
-    }
+/* Contenedor principal con scroll si crece */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px 15px;
+    overflow-y: auto;
+}
 
-    .salir a {
-        text-decoration: none;
-        color: #fff;
-        font-weight: 600;
-        font-size: 1rem;
-        padding: 6px 12px;
-        border: 1px solid #fff2;
-        border-radius: 8px;
-        transition: all 0.3s ease;
-    }
+header {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 10;
+}
 
-    .salir a:hover {
-        background: #FFBE5C;
-        border-color: #FFBE5C;
-        color: #111;
-    }
+.salir a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 6px 12px;
+    border: 1px solid #fff2;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+.salir a:hover {
+    background: #FFBE5C;
+    border-color: #FFBE5C;
+    color: #111;
+}
 
-    /* FORM CARD */
+/* Form adaptable y con transición */
+form {
+    background: #1a1a1a;
+    border-radius: 20px;
+    padding: 40px 30px;
+    width: 100%;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+    margin-top: 80px; /* espacio para header fijo */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+h2 {
+    text-align: center;
+    font-weight: 600;
+    color: #FFBE5C;
+    font-size: 1.8rem;
+}
+label { font-size: 0.95rem; font-weight: 500; }
+
+input, select {
+    padding: 12px 15px;
+    border-radius: 10px;
+    border: none;
+    background: #252525;
+    color: #fff;
+    font-size: 1rem;
+    width: 100%;
+}
+input:focus, select:focus {
+    outline: 2px solid #FFBE5C;
+    background: #2a2a2a;
+}
+
+.tecongregas, .cobertura {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+.radio-container {
+    position: relative;
+    padding-left: 30px;
+    cursor: pointer;
+    user-select: none;
+}
+.radio-container input { position: absolute; opacity: 0; }
+.checkmark {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 18px;
+    width: 18px;
+    background-color: #252525;
+    border-radius: 50%;
+    border: 2px solid #FFBE5C;
+}
+.radio-container input:checked ~ .checkmark { background: #FFBE5C; }
+
+button {
+    padding: 14px 25px;
+    border-radius: 25px;
+    border: none;
+    background: #FFBE5C;
+    color: #111;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    align-self: center;
+}
+button:hover { background: #ff9c1a; }
+
+/* Transición suave para los contenedores dinámicos */
+.dynamic-container {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    margin-top: 0;
+    transition: max-height 0.35s ease, opacity 0.35s ease, margin-top 0.35s ease;
+}
+.dynamic-container.visible {
+    max-height: 500px; /* suficiente para los inputs */
+    opacity: 1;
+    margin-top: 15px;
+}
+
+/* Responsividad para pantallas pequeñas */
+@media (max-width: 480px) {
     form {
-        background: #1a1a1a;
-        border-radius: 20px;
-        padding: 40px 30px;
-        width: 100%;
-        max-width: 420px;
-        display: flex;
-        flex-direction: column;
-        gap: 30px;
-        box-shadow: 0 15px 40px rgba(0,0,0,0.5);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        padding: 30px 20px;
+        gap: 18px;
     }
-
-    form:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 20px 50px rgba(0,0,0,0.6);
-    }
-
-    h2 {
-        text-align: center;
-        margin-bottom: 15px;
-        font-weight: 600;
-        color: #FFBE5C;
-        font-size: 1.8rem;
-    }
-
-    label {
-        font-size: 0.95rem;
-        font-weight: 500;
-        margin-bottom: 8px;
-    }
-
-    input[type="text"],
-    input[type="tel"],
-    input[type="email"] {
-        padding: 14px 18px;
-        border-radius: 12px;
-        border: none;
-        background: #252525;
-        color: #fff;
-        font-size: 1rem;
-        width: 100%;
-        transition: all 0.2s ease;
-    }
-
-    input[type="text"]:focus,
-    input[type="tel"]:focus,
-    input[type="email"]:focus {
-        outline: 2px solid #FFBE5C;
-        background: #2a2a2a;
-    }
-
-    /* CUSTOM RADIO BUTTONS */
-    .tecongregas {
-        display: flex;
-        gap: 20px;
-        flex-wrap: wrap;
-        margin-bottom: 15px;
-    }
-
-    .radio-container {
-        position: relative;
-        padding-left: 35px;
-        cursor: pointer;
-        user-select: none;
-        font-size: 0.95rem;
-        display: flex;
-        align-items: center;
-        transition: transform 0.2s ease;
-    }
-
-    .radio-container:hover {
-        transform: scale(1.05);
-    }
-
-    .radio-container input {
-        position: absolute;
-        opacity: 0;
-        cursor: pointer;
-    }
-
-    .checkmark {
-        position: absolute;
-        left: 0;
-        top: 50%;
-        transform: translateY(-50%);
-        height: 20px;
-        width: 20px;
-        background-color: #252525;
-        border-radius: 50%;
-        border: 2px solid #FFBE5C;
-        transition: all 0.3s ease;
-    }
-
-    .radio-container input:checked ~ .checkmark {
-        background: #FFBE5C;
-        box-shadow: 0 0 8px #FFBE5Caa;
-    }
-
-    .checkmark:after {
-        content: "";
-        position: absolute;
-        display: none;
-    }
-
-    .radio-container input:checked ~ .checkmark:after {
-        display: block;
-    }
-
-    .radio-container .checkmark:after {
-        top: 5px;
-        left: 5px;
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: #111;
-    }
-
-    /* BUTTON */
-    button {
-        padding: 14px 25px;
-        border-radius: 25px;
-        border: none;
-        background: #FFBE5C;
-        color: #111;
-        font-weight: 600;
-        font-size: 1rem;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        align-self: center;
-        min-width: 150px;
-    }
-
-    button:hover {
-        background: #ff9c1a;
-        box-shadow: 0 0 15px #FFBE5C66;
-        transform: translateY(-2px);
-    }
-
-    button:active {
-        background: #e68a00;
-        box-shadow: 0 0 5px #FFBE5C66;
-        transform: translateY(0);
-    }
-
-    @media (max-width: 500px) {
-        form { padding: 30px 20px; gap: 20px; }
-        .tecongregas { flex-direction: column; }
-        button { width: 100%; }
-    }
+    h2 { font-size: 1.4rem; }
+    input, select, button { font-size: 0.9rem; }
+}
 </style>
 </head>
 <body>
 
 <header>
-    <div class="salir">
-        <a href="/escuela/">&#8592; Volver</a>
-    </div>
+    <div class="salir"><a href="/escuela/">&#8592; Volver</a></div>
 </header>
 
 <form id="contactForm">
@@ -219,48 +168,162 @@
         </label>
     </div>
 
-    <label>Nombre</label>
-    <input type="text" name="nombre" id="nombre" required>
+    <div id="iglesiaNo" class="dynamic-container">
+        <label>¿Cuál es el nombre de tu iglesia?</label>
+        <input type="text" id="nombreIglesiaNo" name="nombreIglesiaNo">
+    </div>
+
+    <div id="coberturaPregunta" class="dynamic-container">
+        <label>¿Tu iglesia está bajo la cobertura de Ministerios Ebenezer?</label>
+        <div class="cobertura">
+            <label class="radio-container">Sí
+                <input type="radio" name="cobertura" value="Sí">
+                <span class="checkmark"></span>
+            </label>
+            <label class="radio-container">No
+                <input type="radio" name="cobertura" value="No">
+                <span class="checkmark"></span>
+            </label>
+        </div>
+    </div>
+
+    <div id="iglesiaSi" class="dynamic-container">
+        <label>Nombre de la iglesia</label>
+        <input type="text" id="nombreIglesiaSi" name="nombreIglesiaSi">
+        <label>Nombre del pastor</label>
+        <input type="text" id="nombrePastor" name="nombrePastor">
+    </div>
+
+    <label>País</label>
+    <select id="pais" name="pais" required></select>
 
     <label>Teléfono</label>
-    <input type="tel" name="telefono" id="telefono" required>
+    <div style="display:flex; gap:10px;">
+        <select id="codigoPais" name="codigoPais" style="max-width:110px;"></select>
+        <input type="tel" id="telefono" name="telefono" required>
+    </div>
+
+    <label>Nombre</label>
+    <input type="text" id="nombre" name="nombre" required>
 
     <label>Correo electrónico</label>
-    <input type="email" name="correo" id="correo">
+    <input type="email" id="correo" name="correo">
 
     <button type="submit">Registrar</button>
 </form>
 
 <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 <script>
+// === EmailJS INIT ===
 emailjs.init("0s7txQoFEkZAkAaZP");
 
-document.getElementById("contactForm").addEventListener("submit", function(event) {
-    event.preventDefault();
-    const serviceID = "service_wltl9a2";
-    const templateID = "template_fmrepao";
+const paises = [
+    { nombre: "Honduras", codigo: "+504" },
+    { nombre: "México", codigo: "+52" },
+    { nombre: "Guatemala", codigo: "+502" },
+    { nombre: "El Salvador", codigo: "+503" },
+    { nombre: "Nicaragua", codigo: "+505" },
+    { nombre: "Costa Rica", codigo: "+506" },
+    { nombre: "Estados Unidos", codigo: "+1" },
+    { nombre: "España", codigo: "+34" },
+    { nombre: "Colombia", codigo: "+57" },
+    { nombre: "Argentina", codigo: "+54" },
+    { nombre: "Perú", codigo: "+51" },
+    { nombre: "Chile", codigo: "+56" }
+];
 
-    const nombre = document.getElementById("nombre").value;
+const paisSelect = document.getElementById("pais");
+const codigoSelect = document.getElementById("codigoPais");
+paises.forEach(p => {
+    const opt1 = document.createElement("option");
+    opt1.value = p.nombre;
+    opt1.textContent = p.nombre;
+    paisSelect.appendChild(opt1);
+    const opt2 = document.createElement("option");
+    opt2.value = p.codigo;
+    opt2.textContent = p.codigo;
+    codigoSelect.appendChild(opt2);
+});
+paisSelect.addEventListener("change", () => {
+    const sel = paises.find(p => p.nombre === paisSelect.value);
+    if (sel) codigoSelect.value = sel.codigo;
+});
 
+const congregasRadios = document.querySelectorAll('input[name="congregas"]');
+const coberturaRadios = document.querySelectorAll('input[name="cobertura"]');
+const iglesiaNo = document.getElementById("iglesiaNo");
+const coberturaPregunta = document.getElementById("coberturaPregunta");
+const iglesiaSi = document.getElementById("iglesiaSi");
+
+function clearInputs(container) {
+    container.querySelectorAll('input').forEach(i => i.value = "");
+    container.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+}
+
+function showElement(el) {
+    el.classList.add("visible");
+}
+function hideElement(el) {
+    el.classList.remove("visible");
+}
+
+// Congregas
+congregasRadios.forEach(r => {
+    r.addEventListener("change", () => {
+        if (r.value === "Sí") {
+            showElement(coberturaPregunta);
+            hideElement(iglesiaSi);
+            hideElement(iglesiaNo);
+            clearInputs(iglesiaSi);
+            clearInputs(iglesiaNo);
+        } else {
+            hideElement(coberturaPregunta);
+            hideElement(iglesiaSi);
+            hideElement(iglesiaNo);
+            clearInputs(iglesiaSi);
+            clearInputs(iglesiaNo);
+        }
+    });
+});
+
+// Cobertura
+coberturaRadios.forEach(r => {
+    r.addEventListener("change", () => {
+        if (r.value === "Sí") {
+            showElement(iglesiaSi);
+            hideElement(iglesiaNo);
+            clearInputs(iglesiaNo);
+        } else if (r.value === "No") {
+            showElement(iglesiaNo);
+            hideElement(iglesiaSi);
+            clearInputs(iglesiaSi);
+        }
+    });
+});
+
+// Envío EmailJS
+document.getElementById("contactForm").addEventListener("submit", e => {
+    e.preventDefault();
     const params = {
-        congregas: document.querySelector('input[name="congregas"]:checked').value,
-        nombre: nombre,
-        telefono: document.getElementById("telefono").value,
+        congregas: document.querySelector('input[name="congregas"]:checked')?.value || "",
+        cobertura: document.querySelector('input[name="cobertura"]:checked')?.value || "",
+        nombreIglesiaNo: document.getElementById("nombreIglesiaNo").value,
+        nombreIglesiaSi: document.getElementById("nombreIglesiaSi").value,
+        nombrePastor: document.getElementById("nombrePastor").value,
+        nombre: document.getElementById("nombre").value,
+        telefono: `${document.getElementById("codigoPais").value} ${document.getElementById("telefono").value}`,
         correo: document.getElementById("correo").value,
+        pais: document.getElementById("pais").value
     };
-
-    localStorage.setItem('nombre', nombre);
-
-    emailjs.send(serviceID, templateID, params)
+    localStorage.setItem('nombre', params.nombre);
+    emailjs.send("service_wltl9a2", "template_fmrepao", params)
         .then(() => {
-            alert("Formulario enviado correctamente.");
+            alert("¡Registro enviado con éxito!");
+            window.location.href = "../../escuela/";
             document.getElementById("contactForm").reset();
         })
-        .catch((error) => {
-            alert("Hubo un error al enviar el formulario: " + error.text);
-        });
+        .catch(err => alert("Error al enviar el formulario: " + (err.text || err)));
 });
 </script>
-
 </body>
 </html>
