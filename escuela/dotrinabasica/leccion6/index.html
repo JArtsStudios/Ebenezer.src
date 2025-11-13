@@ -1,11 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dotrina Basica</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Regresa mañana</title>
+  <style>
+    html,body{height:100%;margin:0}
+    body{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      font-family:system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background:#fff;
+      color:#111;
+      line-height:1.2;
+      padding:1rem;
+      box-sizing:border-box;
+      text-align:center;
+    }
+    .mensaje{
+      font-size:calc(16px + 2vw);
+      margin-bottom:1.5rem;
+    }
+    .boton{
+      background:#111;
+      color:#fff;
+      border:none;
+      padding:0.75rem 1.5rem;
+      font-size:1rem;
+      border-radius:0.5rem;
+      cursor:pointer;
+    }
+    .boton:hover{
+      opacity:0.8;
+    }
+  </style>
 </head>
 <body>
-    <h1>reresa mañana</h1>
+  <div class="mensaje">regresa mañana por mas lecciones</div>
+  <button class="boton" onclick="history.back()">Regresar</button>
 </body>
 </html>
