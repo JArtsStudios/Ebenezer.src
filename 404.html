@@ -3,65 +3,66 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>404 - No Encontrado</title>
+<title>404 - Página no encontrada</title>
 <style>
-  body, html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    font-family: 'Arial', sans-serif;
-    background-color: #06151C;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #EAF5FB;
-  }
-
-  .container {
-    text-align: center;
-  }
-
-  h1 {
-    font-size: 8rem;
-    margin: 0;
-    color: #2685B2;
-  }
-
-  h2 {
-    font-size: 1.5rem;
-    margin: 10px 0 30px;
-    color: #EAF5FB;
-  }
-
-  button {
-    padding: 12px 25px;
-    font-size: 1rem;
-    border: 2px solid #2685B2;
-    border-radius: 5px;
-    background-color: transparent;
-    color: #2685B2;
-    cursor: pointer;
-    transition: 0.3s ease;
-  }
-
-  button:hover {
-    background-color: #2685B2;
-    color: #EAF5FB;
-  }
-
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+        background: #1a1a1a;
+        color: #fff;
+        text-align: center;
+    }
+    h1 {
+        font-size: 6rem;
+        margin-bottom: 0.5rem;
+    }
+    p {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+    }
+    button {
+        padding: 1rem 2rem;
+        font-size: 1rem;
+        background: #ff4d4d;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    button:hover {
+        background: #ff1a1a;
+    }
 </style>
 </head>
 <body>
-  <div class="container">
-    <h1>404</h1>
-    <h2>Página no encontrada</h2>
-    <button onclick="goHome()">Volver al inicio</button>
-  </div>
 
-  <script>
-    function goHome() {
-      window.location.href = '../inicio/';
+<h1>404</h1>
+<p>Página no encontrada</p>
+<button id="btnSalir">Salir</button>
+
+<script>
+    // Detectar la profundidad de la carpeta actual
+    const path = window.location.pathname.split('/').filter(Boolean);
+    const niveles = path.length; // número de subcarpetas
+    let redireccion = '';
+
+    // Generar ruta relativa a /inicio/
+    for (let i = 0; i < niveles; i++) {
+        redireccion += '../';
     }
-  </script>
+    redireccion += 'inicio/';
+
+    // Asignar redirección al botón
+    document.getElementById('btnSalir').addEventListener('click', () => {
+        window.location.href = redireccion;
+    });
+</script>
+
 </body>
 </html>
