@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Mostrar certificado si completó todas las lecciones
-    if (progreso >= 24) {
+    if (progreso >= 25) {
         const imagenContainer = document.createElement('div');
         imagenContainer.classList.add('imagen-descargable');
         imagenContainer.innerHTML = `<a href="../../img/certificado.png" download="certificado.png">Descargar Certificado</a>`;
