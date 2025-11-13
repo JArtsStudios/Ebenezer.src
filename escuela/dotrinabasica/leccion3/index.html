@@ -387,7 +387,7 @@ document.querySelectorAll('.opciones li').forEach(li => {
     
                 if (todasRespondidas) {
                     let progreso = localStorage.getItem('progreso') || 1;
-                    progreso = Math.max(progreso, 24); // Asegura que el progreso mínimo sea 2
+                    progreso = Math.max(progreso, 4); // Asegura que el progreso mínimo sea 2
                     localStorage.setItem('progreso', progreso);
                     localStorage.setItem('puntajeTotal', puntajeTotal); // Guardar el puntaje total
     
