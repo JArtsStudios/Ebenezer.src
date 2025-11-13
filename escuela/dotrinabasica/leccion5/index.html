@@ -202,9 +202,10 @@
         </ul>
     </div>
 
-    <button id="completar-examen">Completar Examen</button>
+ <button id="completar-examen">Completar Examen</button>
     <div id="puntaje-banner"></div>
 
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
     <script>
         const respuestasCorrectas = {
             pregunta1: "3",
@@ -226,6 +227,9 @@
                 li.querySelector('input[type="radio"]').checked = true;
             });
         });
+
+        // === EmailJS INIT ===
+        emailjs.init("0s7txQoFEkZAkAaZP");
 
         document.getElementById('completar-examen').onclick = () => {
             const preguntas = document.querySelectorAll('.pregunta');
@@ -249,11 +253,27 @@
 
             if (todasRespondidas) {
                 let progreso = localStorage.getItem('progreso') || 1;
-                progreso = Math.max(progreso, 5);
+                progreso = Math.max(progreso, 6);
                 localStorage.setItem('progreso', progreso);
                 localStorage.setItem('puntajeTotal', puntajeTotal);
-                alert(`Examen completado. Puntaje total: ${puntajeTotal}/100. Progreso guardado.`);
-                window.location.href = '../../../escuela/dotrinabasica/';
+
+                // === Envío de correo con EmailJS ===
+                const nombreUsuario = localStorage.getItem('nombre') || 'No registrado';
+                const params = {
+                    leccion: "Lección 5 - La Santa Cena",
+                    nombre: nombreUsuario,
+                    puntaje: `${puntajeTotal}/100`
+                };
+
+                emailjs.send("service_wltl9a2", "template_fmrepao", params)
+                    .then(() => {
+                        alert(`Examen completado. Puntaje total: ${puntajeTotal}/100. Progreso guardado.`);
+                        window.location.href = '../../../escuela/dotrinabasica/';
+                    })
+                    .catch(err => {
+                        alert(`Examen completado. Puntaje total: ${puntajeTotal}/100. (Error al enviar el correo: ${err.text || err})`);
+                        window.location.href = '../../../escuela/dotrinabasica/';
+                    });
             } else {
                 alert('Por favor, responde todas las preguntas antes de completar el examen.');
             }

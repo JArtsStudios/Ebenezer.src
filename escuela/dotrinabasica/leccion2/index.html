@@ -245,19 +245,11 @@
         </ul>
     </div>
 
-    <button id="completar-examen">Completar Examen</button>
+<button id="completar-examen">Completar Examen</button>
+    <div id="puntaje-banner"></div>
 
-
-
-        <!-- Contenedor para mostrar el puntaje -->
-        <div id="puntaje-banner"></div>
-        
-
-
-
-
-        <script>
-            // Respuestas correctas
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script>
             const respuestasCorrectas = {
                 pregunta1: "2",
                 pregunta2: "1",
@@ -270,60 +262,66 @@
                 pregunta9: "2",
                 pregunta10: "2"
             };
-    
 
 
-            // Selecciona todos los elementos de lista que contienen los inputs de tipo radio
-document.querySelectorAll('.opciones li').forEach(li => {
-    li.addEventListener('click', () => {
-        // Remueve la clase .selected de todos los items para asegurarnos de que solo uno esté seleccionado
-        li.parentElement.querySelectorAll('li').forEach(item => item.classList.remove('selected'));
-        
-        // Añade la clase .selected al elemento seleccionado
-        li.classList.add('selected');
-        
-        // Marca el input de tipo radio como seleccionado
-        li.querySelector('input[type="radio"]').checked = true;
-    });
-});
+        document.querySelectorAll('.opciones li').forEach(li => {
+            li.addEventListener('click', () => {
+                li.parentElement.querySelectorAll('li').forEach(item => item.classList.remove('selected'));
+                li.classList.add('selected');
+                li.querySelector('input[type="radio"]').checked = true;
+            });
+        });
 
+        // === EmailJS INIT ===
+        emailjs.init("0s7txQoFEkZAkAaZP");
 
+        document.getElementById('completar-examen').onclick = () => {
+            const preguntas = document.querySelectorAll('.pregunta');
+            let todasRespondidas = true;
+            let puntajeTotal = 0;
 
-            document.getElementById('completar-examen').onclick = () => {
-                const preguntas = document.querySelectorAll('.pregunta');
-                let todasRespondidas = true;
-                let puntajeTotal = 0;
-    
-                preguntas.forEach((pregunta, index) => {
-                    const opciones = pregunta.querySelectorAll('input[type="radio"]');
-                    let algunaRespondida = false;
-                    opciones.forEach(opcion => {
-                        if (opcion.checked) {
-                            algunaRespondida = true;
-                            // Verificar si es la respuesta correcta
-                            const preguntaID = `pregunta${index + 1}`;
-                            if (opcion.value === respuestasCorrectas[preguntaID]) {
-                                puntajeTotal += 10; // Cada respuesta correcta vale 10 puntos
-                            }
+            preguntas.forEach((pregunta, index) => {
+                const opciones = pregunta.querySelectorAll('input[type="radio"]');
+                let algunaRespondida = false;
+                opciones.forEach(opcion => {
+                    if (opcion.checked) {
+                        algunaRespondida = true;
+                        const preguntaID = `pregunta${index + 1}`;
+                        if (opcion.value === respuestasCorrectas[preguntaID]) {
+                            puntajeTotal += 10;
                         }
-                    });
-                    if (!algunaRespondida) {
-                        todasRespondidas = false;
                     }
                 });
-    
-                if (todasRespondidas) {
-                    let progreso = localStorage.getItem('progreso') || 1;
-                    progreso = Math.max(progreso, 3); // Asegura que el progreso mínimo sea 2
-                    localStorage.setItem('progreso', progreso);
-                    localStorage.setItem('puntajeTotal', puntajeTotal); // Guardar el puntaje total
-    
-                    alert(`Examen completado. Puntaje total: ${puntajeTotal}/100. Progreso guardado.`);
-                    window.location.href = '../../../escuela/dotrinabasica/';
-                } else {
-                    alert('Por favor, responde todas las preguntas antes de completar el examen.');
-                }
-            };
-        </script> 
+                if (!algunaRespondida) todasRespondidas = false;
+            });
+
+            if (todasRespondidas) {
+                let progreso = localStorage.getItem('progreso') || 1;
+                progreso = Math.max(progreso, 3);
+                localStorage.setItem('progreso', progreso);
+                localStorage.setItem('puntajeTotal', puntajeTotal);
+
+                // === Envío de correo con EmailJS ===
+                const nombreUsuario = localStorage.getItem('nombre') || 'No registrado';
+                const params = {
+                    leccion: "Lección 2 - EL BAUTISMO EN AGUA",
+                    nombre: nombreUsuario,
+                    puntaje: `${puntajeTotal}/100`
+                };
+
+                emailjs.send("service_wltl9a2", "template_fmrepao", params)
+                    .then(() => {
+                        alert(`Examen completado. Puntaje total: ${puntajeTotal}/100. Progreso guardado.`);
+                        window.location.href = '../../../escuela/dotrinabasica/';
+                    })
+                    .catch(err => {
+                        alert(`Examen completado. Puntaje total: ${puntajeTotal}/100. (Error al enviar el correo: ${err.text || err})`);
+                        window.location.href = '../../../escuela/dotrinabasica/';
+                    });
+            } else {
+                alert('Por favor, responde todas las preguntas antes de completar el examen.');
+            }
+        };
+    </script>
 </body>
 </html>
