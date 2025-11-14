@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../css/oraciones.css">
+    <link rel="stylesheet" href="../css/inicio.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
@@ -21,6 +22,181 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
     <link rel="icon" href="img/logo pequeño.png">
+    <style>
+
+
+
+        .formulario-container {
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+           .card {
+            background: #ffffff;
+            width: 100%;
+            max-width: 450px;
+            padding: 25px;
+            border-radius: 14px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+            color: #555;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            font-size: 15px;
+            background: #fafafa;
+            transition: all 0.2s;
+        }
+
+        input:focus, textarea:focus {
+            border-color: #ffc14d;
+            background: #ffffff;
+            outline: none;
+            box-shadow: 0 0 4px rgba(255, 199, 77, 0.4);
+        }
+
+        textarea {
+            resize: none;
+            height: 130px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #e0a016;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        button:hover {
+            background: #f0a93f;
+        }
+
+        .success {
+            margin-top: 10px;
+            color: #2e7d32;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .error {
+            margin-top: 10px;
+            color: #c62828;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        @media screen and (min-width: 209px) and (max-width: 600px) {
+                    .formulario-container {
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+           .card {
+            background: #ffffff;
+            width: 80%;
+            max-width: 450px;
+            padding: 25px;
+            border-radius: 14px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+            color: #555;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            font-size: 15px;
+            background: #fafafa;
+            transition: all 0.2s;
+        }
+
+        input:focus, textarea:focus {
+            border-color: #ffc14d;
+            background: #ffffff;
+            outline: none;
+            box-shadow: 0 0 4px rgba(255, 199, 77, 0.4);
+        }
+
+        textarea {
+            resize: none;
+            height: 130px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #e0a016;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        button:hover {
+            background: #f0a93f;
+        }
+
+        .success {
+            margin-top: 10px;
+            color: #2e7d32;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .error {
+            margin-top: 10px;
+            color: #c62828;
+            font-weight: 500;
+            text-align: center;
+        }
+        }
+
+    </style>
 </head>
 <body>
     
@@ -46,18 +222,108 @@
     
     </div>
 
+
+    <div class="formulario-container">
+         <div class="card">
+        <h2>Petición de Oración</h2>
+
+        <form id="formOracion">
+            <label>Nombre completo</label>
+            <input type="text" name="nombre" required>
+
+            <label>Número de teléfono</label>
+            <input type="tel" name="numero" required>
+
+            <label>Correo electrónico</label>
+            <input type="email" name="correo" required>
+
+            <label>Petición (máximo 300 palabras)</label>
+            <textarea name="peticion" maxlength="2000" required></textarea>
+
+            <button type="submit">Enviar Petición</button>
+
+            <p id="mensaje"></p>
+        </form>
+    </div>
+    </div>
+
+
+     <div class="new-ipad-container">
+        <div class="new-ipad-title">
+            <h1>ORACIONES ONLINE</h1>
+            <h1>ORACIONES ONLINE</h1>
+            <h1>ORACIONES ONLINE</h1>
+            <h1>ORACIONES ONLINE</h1>
+            <h1>ORACIONES ONLINE</h1>
+            <h1>ORACIONES ONLINE</h1>
+        </div>
+        <div class="new-ipad">
+            <img src="../img/ipad2.png" alt="">
+        </div>
+        <div class="new-ipad-button">
+        <a href="https://meet.google.com/qrg-rste-yax">Unirse</a>
+        </div>
+    </div>
+
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute;">
+    <filter id="filtroVidrioMascara" x="-50%" y="-50%" width="200%" height="200%">
+      
+      <!-- 1. Turbulencia (ondas) -->
+      <feTurbulence type="fractalNoise" baseFrequency="0.01" numOctaves="2" result="ruido" />
+
+      <!-- 2. Máscara radial: centro blanco (sin efecto), bordes negros (con efecto) -->
+      <feImage result="mascaraRadial"
+        href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJhZGlhbEdyYWRpZW50IGlkPSJyIiBjeD0iMTAwIiBjeT0iMTAwIiByPSI4MCI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjZmZmIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMDAwIi8+PC9yYWRpYWxHcmFkaWVudD48cmVjdCBmaWxsPSJ1cmwoI3IpIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIvPjwvc3ZnPg=="
+        preserveAspectRatio="none"
+      />
+
+      <!-- 3. Composición: ondas * máscara radial -->
+      <feComposite in="ruido" in2="mascaraRadial" operator="in" result="ondasLimitadas" />
+
+      <!-- 4. Aplicar desplazamiento -->
+      <feDisplacementMap in="SourceGraphic" in2="ondasLimitadas" scale="150"
+        xChannelSelector="R" yChannelSelector="G" />
+    </filter>
+  </svg>
+
     
 
+<svg width="0" height="0" style="position:absolute;">
+  <defs>
+    <filter id="chromatic-aberration" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
+      <!-- Desplazar rojo -->
+      <feOffset in="SourceGraphic" dx="-2" dy="0" result="red" />
+      <feColorMatrix in="red" type="matrix" values="
+         1 0 0 0 0
+         0 0 0 0 0
+         0 0 0 0 0
+         0 0 0 1 0" result="redOnly" />
+      
+      <!-- Desplazar verde -->
+      <feOffset in="SourceGraphic" dx="0" dy="0" result="green" />
+      <feColorMatrix in="green" type="matrix" values="
+         0 0 0 0 0
+         0 1 0 0 0
+         0 0 0 0 0
+         0 0 0 1 0" result="greenOnly" />
+      
+      <!-- Desplazar azul -->
+      <feOffset in="SourceGraphic" dx="2" dy="0" result="blue" />
+      <feColorMatrix in="blue" type="matrix" values="
+         0 0 0 0 0
+         0 0 0 0 0
+         0 0 1 0 0
+         0 0 0 1 0" result="blueOnly" />
+      
+      <!-- Combinar los colores -->
+      <feBlend in="redOnly" in2="greenOnly" mode="screen" result="rg" />
+      <feBlend in="rg" in2="blueOnly" mode="screen" />
+    </filter>
+  </defs>
+</svg>
 
-    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfGprwv2EdpzMKcL1cVLGoxv7r7my1iHpyc_15PUlS2rqWXow/viewform?embedded=true" width="742" height="800" frameborder="0" marginheight="0" marginwidth="0">Cargando…</iframe>
-
-    <div class="container-ipad">
-        <h1>ORACIONES ONLINE</h1>
-        <div class="ipad">
-            <img src="../img/ipad.png" alt="ipad oraciones">
-        </div>
-        <a href="#">Unirse</a>
-    </div>
 
 
 
@@ -98,9 +364,33 @@
         <a href="https://jartsstudios.github.io/J-Arts-Studios/">©J Arts Studios 2024</a>
     </div>
 </footer>
+     <!-- EmailJS -->
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 
+    <script>
+        (function() {
+            emailjs.init("6E_NbgslAFw-DTIq4"); // Reemplaza con tu Public Key
+        })();
+    </script>
     <script src="js/oraciones.js"></script>
+ <script>
+        document.getElementById("formOracion").addEventListener("submit", function(e) {
+            e.preventDefault();
 
+            const mensaje = document.getElementById("mensaje");
+
+            emailjs.sendForm("service_kfnpuj1", "template_dycfhrm", this)
+                .then(() => {
+                    mensaje.textContent = "Tu petición ha sido enviada correctamente.";
+                    mensaje.className = "success";
+                    this.reset();
+                })
+                .catch((err) => {
+                    mensaje.textContent = "Ocurrió un error al enviar. Intenta de nuevo.";
+                    mensaje.className = "error";
+                });
+        });
+    </script>
 </body>
 </html>
 
