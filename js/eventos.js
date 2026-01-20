@@ -3,16 +3,10 @@ const eventos = [
     id: 1,
     titulo: "Santa Cena",
     descripcion: "Conmemoración del sacrificio de Cristo mediante pan y vino sagrado.",
-    fecha: "2025-12-07T17:00:00",
+    fecha: "2026-02-01T17:00:00",
     img: "../img/santacena.png"
   },
-  {
-    id: 2,
-    titulo: "PROCLAMA PROFETICA 2026",
-    descripcion: "¡Prepárate para recibir palabra, revelación y esperanza en Proclama Profética 2026!",
-    fecha: "2025-12-31T19:30:00",
-    img: "../img/Proclama.png"
-  }
+
  
 ];
 
