@@ -10,8 +10,8 @@
 <body>
 
 <script>
-const pass=prompt("Contraseña");
-if(pass!=="ebenezer2026"){alert("Acceso denegado");location.reload();}
+const pass = prompt("Contraseña");
+if(pass !== "ebenezer2026"){ alert("Acceso denegado"); location.reload(); }
 </script>
 
 <div class="app">
@@ -33,6 +33,7 @@ if(pass!=="ebenezer2026"){alert("Acceso denegado");location.reload();}
 <th>ID</th>
 <th>Sector</th>
 <th>Discipulado</th>
+<th>Rol Disc.</th>
 <th>Sirviendo</th>
 <th>Ministerios</th>
 <th>Supervisor</th>
@@ -50,46 +51,47 @@ if(pass!=="ebenezer2026"){alert("Acceso denegado");location.reload();}
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
 import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
 
-const app=initializeApp({
-apiKey:"AIzaSyBtPxzxzXYWKRDOo_EMtp5iCfLYzLe5CFU",
-authDomain:"miembros-ebenezer-src.firebaseapp.com",
-projectId:"miembros-ebenezer-src"
+const app = initializeApp({
+  apiKey: "AIzaSyBtPxzxzXYWKRDOo_EMtp5iCfLYzLe5CFU",
+  authDomain: "miembros-ebenezer-src.firebaseapp.com",
+  projectId: "miembros-ebenezer-src"
 });
-const db=getFirestore(app);
+const db = getFirestore(app);
 
-let miembros=[];
+let miembros = [];
 
-async function cargar(){
-const snap=await getDocs(collection(db,"miembros"));
-miembros=[];
-snap.forEach(d=>miembros.push(d.data()));
-render();
-graf();
+async function cargar() {
+  const snap = await getDocs(collection(db, "miembros"));
+  miembros = [];
+  snap.forEach(d => miembros.push(d.data()));
+  render();
+  graf();
 }
 
+// formatear ministerios
 function formatearMinisterios(mins){
-if(!mins || mins.length===0) return "—";
-return mins.map(m=>`${m.nombre} (${m.cargo})`).join("<br>");
+  if(!mins || mins.length===0) return "—";
+  return mins.map(m=>`${m.nombre} (${m.cargo})`).join("<br>");
 }
 
 function render(){
-tabla.innerHTML="";
-const f=filtroSector.value;
+  tabla.innerHTML = "";
+  const f = filtroSector.value;
 
-miembros.forEach(m=>{
-if(f==="Todos"||m.sector===f){
+  miembros.forEach(m=>{
+    if(f === "Todos" || m.sector === f){
 
-const numMin = m.ministerios?.length || 0;
+      const numMin = m.ministerios?.length || 0;
+      const supervisorTexto = m.supervisor==="Si"
+        ? `Sí (Sector ${m.sectorSupervisor||"?"})`
+        : "No";
 
-const supervisorTexto = m.supervisor==="Si"
-? `Sí (Sector ${m.sectorSupervisor||"?"})`
-: "No";
-
-tabla.innerHTML+=`<tr>
+      tabla.innerHTML += `<tr>
 <td>${m.nombre}</td>
 <td>${m.identidad}</td>
 <td>${m.sector}</td>
 <td>${m.discipulado||"—"}</td>
+<td>${m.rolDiscipulado||"—"}</td>
 <td>${m.sirviendo}</td>
 <td>
 <b>${numMin}</b><br>
@@ -97,42 +99,44 @@ ${formatearMinisterios(m.ministerios)}
 </td>
 <td>${supervisorTexto}</td>
 </tr>`;
-}
-});
+    }
+  });
 }
 
-filtroSector.onchange=render;
+filtroSector.onchange = render;
 
 function graf(){
-const c={"1":0,"2":0,"3":0,"4":0};
-miembros.forEach(m=>c[m.sector]++);
-new Chart(grafica,{
-type:"bar",
-data:{
-labels:["1","2","3","4"],
-datasets:[{data:[c["1"],c["2"],c["3"],c["4"]]}]
+  const c = {"1":0,"2":0,"3":0,"4":0};
+  miembros.forEach(m=>c[m.sector]++);
+  new Chart(grafica, {
+    type: "bar",
+    data: {
+      labels: ["1","2","3","4"],
+      datasets: [{
+        label: "Miembros por Sector",
+        data: [c["1"], c["2"], c["3"], c["4"]],
+        backgroundColor: ["#00aaff","#ffaa00","#ff00aa","#00ffaa"]
+      }]
+    },
+    options:{
+      responsive:true,
+      plugins:{legend:{display:false}}
+    }
+  });
 }
-});
-}
 
-window.exportar=function(){
-
-let csv="Nombre,ID,Sector,Discipulado,Sirviendo,Ministerios,Supervisor\n";
-
-miembros.forEach(m=>{
-
-const mins = m.ministerios?.map(x=>`${x.nombre} (${x.cargo})`).join(" | ") || "";
-const sup = m.supervisor==="Si" ? `Si sector ${m.sectorSupervisor}` : "No";
-
-csv+=`${m.nombre},${m.identidad},${m.sector},${m.discipulado},${m.sirviendo},${mins},${sup}\n`;
-
-});
-
-const blob=new Blob([csv]);
-const a=document.createElement("a");
-a.href=URL.createObjectURL(blob);
-a.download="miembros.csv";
-a.click();
+window.exportar = function(){
+  let csv = "Nombre,ID,Sector,Discipulado,Rol Discipulado,Sirviendo,Ministerios,Supervisor\n";
+  miembros.forEach(m=>{
+    const mins = m.ministerios?.map(x=>`${x.nombre} (${x.cargo})`).join(" | ") || "";
+    const sup = m.supervisor==="Si" ? `Si sector ${m.sectorSupervisor}` : "No";
+    csv += `${m.nombre},${m.identidad},${m.sector},${m.discipulado||""},${m.rolDiscipulado||""},${m.sirviendo},${mins},${sup}\n`;
+  });
+  const blob = new Blob([csv]);
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "miembros.csv";
+  a.click();
 };
 
 cargar();

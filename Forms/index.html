@@ -42,6 +42,16 @@
 <input id="discipulado" required>
 </div>
 
+<div class="group">
+<label>Rol en discipulado</label>
+<select id="rolDiscipulado" required>
+<option value="">Seleccionar</option>
+<option>Miembro</option>
+<option>Sub líder</option>
+<option>Líder</option>
+</select>
+</div>
+
 <section>
 
 <label class="section-title">¿Está sirviendo?</label>
@@ -73,7 +83,7 @@
 
 <section>
 
-<label class="section-title">¿Supervisor?</label>
+<label class="section-title">Eres Supervisor de un Sector?</label>
 
 <div class="toggle">
 <label class="pill"><input type="radio" name="supervisor" value="Si" required><span>Sí</span></label>
@@ -102,86 +112,102 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
 import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
 
-const app=initializeApp({
-apiKey:"AIzaSyBtPxzxzXYWKRDOo_EMtp5iCfLYzLe5CFU",
-authDomain:"miembros-ebenezer-src.firebaseapp.com",
-projectId:"miembros-ebenezer-src"
+const app = initializeApp({
+  apiKey: "AIzaSyBtPxzxzXYWKRDOo_EMtp5iCfLYzLe5CFU",
+  authDomain: "miembros-ebenezer-src.firebaseapp.com",
+  projectId: "miembros-ebenezer-src"
 });
-const db=getFirestore(app);
+const db = getFirestore(app);
 
 // mostrar ministerios
 document.querySelectorAll('[name="sirviendo"]').forEach(r=>{
-r.onchange=()=>{
-const sirve=r.value==="Si";
-ministerioSection.classList.toggle("hidden",!sirve);
-cantidadMinisterios.required=sirve;
+  r.onchange = ()=>{
+    const sirve = r.value === "Si";
+    ministerioSection.classList.toggle("hidden", !sirve);
+    cantidadMinisterios.required = sirve;
 
-if(!sirve){
-cantidadMinisterios.value="";
-ministeriosContainer.innerHTML="";
-}
-};
+    if(!sirve){
+      cantidadMinisterios.value = "";
+      ministeriosContainer.innerHTML = "";
+    }
+  };
 });
 
-// generar ministerios
-cantidadMinisterios.onchange=e=>{
-ministeriosContainer.innerHTML="";
-const cantidad=parseInt(e.target.value);
+// generar ministerios con lista de ministerios fijos
+const ministeriosLista = [
+  "Alabanza",
+  "Danza",
+  "Corros",
+  "Niños",
+  "Matrimonios",
+  "Jóvenes",
+  "Evangelismo",
+  "Multimedia",
+  "Sonido"
+];
 
-if(!cantidad || cantidad===0) return;
+cantidadMinisterios.onchange = e=>{
+  ministeriosContainer.innerHTML = "";
+  const cantidad = parseInt(e.target.value);
 
-for(let i=1;i<=cantidad;i++){
-ministeriosContainer.innerHTML+=`
-<div class="group">
-<label>Ministerio ${i}</label>
-<input class="minNombre" required>
-</div>
-<div class="group">
-<label>Cargo</label>
-<select class="minCargo" required>
-<option value="">Seleccionar</option>
-<option>Miembro</option>
-<option>Líder</option>
-</select>
-</div>`;
-}
+  if(!cantidad || cantidad === 0) return;
+
+  for(let i=1; i<=cantidad; i++){
+    ministeriosContainer.innerHTML += `
+    <div class="group">
+      <label>Ministerio ${i}</label>
+      <select class="minNombre" required>
+        <option value="">Seleccionar</option>
+        ${ministeriosLista.map(m => `<option>${m}</option>`).join("")}
+      </select>
+    </div>
+    <div class="group">
+      <label>Cargo</label>
+      <select class="minCargo" required>
+        <option value="">Seleccionar</option>
+        <option>Miembro</option>
+        <option>Líder</option>
+      </select>
+    </div>`;
+  }
 };
 
 // supervisor
 document.querySelectorAll('[name="supervisor"]').forEach(r=>{
-r.onchange=()=>{
-sectorSupervisorDiv.classList.toggle("hidden",r.value==="No");
-sectorSupervisor.required=r.value==="Si";
-};
+  r.onchange = ()=>{
+    sectorSupervisorDiv.classList.toggle("hidden", r.value === "No");
+    sectorSupervisor.required = r.value === "Si";
+  };
 });
 
 // submit
-form.onsubmit=async e=>{
-e.preventDefault();
+form.onsubmit = async e=>{
+  e.preventDefault();
 
-const ministerios=[];
-document.querySelectorAll(".minNombre").forEach((m,i)=>{
-ministerios.push({
-nombre:m.value,
-cargo:document.querySelectorAll(".minCargo")[i].value
-});
-});
+  const ministerios = [];
+  document.querySelectorAll(".minNombre").forEach((m,i)=>{
+    ministerios.push({
+      nombre: m.value,
+      cargo: document.querySelectorAll(".minCargo")[i].value
+    });
+  });
 
-await addDoc(collection(db,"miembros"),{
-nombre:nombre.value,
-identidad:identidad.value,
-telefono:telefono.value,
-sector:sector.value,
-discipulado:discipulado.value,
-sirviendo:document.querySelector('[name="sirviendo"]:checked').value,
-ministerios,
-supervisor:document.querySelector('[name="supervisor"]:checked').value,
-sectorSupervisor:sectorSupervisor.value || null
-});
+  await addDoc(collection(db,"miembros"),{
+    nombre: nombre.value,
+    identidad: identidad.value,
+    telefono: telefono.value,
+    sector: sector.value,
+    discipulado: discipulado.value,
+    rolDiscipulado: rolDiscipulado.value,
+    sirviendo: document.querySelector('[name="sirviendo"]:checked').value,
+    ministerios,
+    supervisor: document.querySelector('[name="supervisor"]:checked').value,
+    sectorSupervisor: sectorSupervisor.value || null
+  });
 
-alert("Guardado");
-form.reset();
-ministeriosContainer.innerHTML="";
+  alert("Guardado");
+  form.reset();
+  ministeriosContainer.innerHTML = "";
 };
 
 </script>
