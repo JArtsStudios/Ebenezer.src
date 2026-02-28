@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registro Miembros</title>
+<link rel="stylesheet" href="formulario.css">
+</head>
+<body>
+
+<div class="app">
+
+<header>Registro de miembros</header>
+
+<form id="form">
+
+<div class="group">
+<label>Nombre completo</label>
+<input id="nombre" required>
+</div>
+
+<div class="group">
+<label>Identidad</label>
+<input id="identidad" required>
+</div>
+
+<div class="group">
+<label>Teléfono</label>
+<input id="telefono" required>
+</div>
+
+<div class="group">
+<label>Sector</label>
+<select id="sector" required>
+<option value="">Seleccionar</option>
+<option>1</option><option>2</option><option>3</option><option>4</option>
+</select>
+</div>
+
+<div class="group">
+<label>Discipulado</label>
+<input id="discipulado" required>
+</div>
+
+<section>
+
+<label class="section-title">¿Está sirviendo?</label>
+
+<div class="toggle">
+<label class="pill"><input type="radio" name="sirviendo" value="Si" required><span>Sí</span></label>
+<label class="pill"><input type="radio" name="sirviendo" value="No"><span>No</span></label>
+</div>
+
+<div id="ministerioSection" class="hidden">
+
+<div class="group">
+<label>Cantidad ministerios</label>
+<select id="cantidadMinisterios">
+<option value="">Seleccionar</option>
+<option>1</option><option>2</option><option>3</option><option>4</option>
+</select>
+</div>
+
+<div id="ministeriosContainer"></div>
+
+</div>
+
+</section>
+
+<section>
+
+<label class="section-title">¿Supervisor?</label>
+
+<div class="toggle">
+<label class="pill"><input type="radio" name="supervisor" value="Si" required><span>Sí</span></label>
+<label class="pill"><input type="radio" name="supervisor" value="No"><span>No</span></label>
+</div>
+
+<div id="sectorSupervisorDiv" class="hidden">
+<div class="group">
+<label>Sector supervisado</label>
+<select id="sectorSupervisor">
+<option value="">Seleccionar</option>
+<option>1</option><option>2</option><option>3</option><option>4</option>
+</select>
+</div>
+</div>
+
+</section>
+
+<button>Guardar</button>
+
+</form>
+</div>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
+
+const app=initializeApp({
+apiKey:"AIzaSyBtPxzxzXYWKRDOo_EMtp5iCfLYzLe5CFU",
+authDomain:"miembros-ebenezer-src.firebaseapp.com",
+projectId:"miembros-ebenezer-src"
+});
+const db=getFirestore(app);
+
+// mostrar ministerios
+document.querySelectorAll('[name="sirviendo"]').forEach(r=>{
+r.onchange=()=>{
+ministerioSection.classList.toggle("hidden",r.value==="No");
+cantidadMinisterios.required=r.value==="Si";
+};
+});
+
+// generar ministerios
+cantidadMinisterios.onchange=e=>{
+ministeriosContainer.innerHTML="";
+for(let i=1;i<=e.target.value;i++){
+ministeriosContainer.innerHTML+=`
+<div class="group">
+<label>Ministerio ${i}</label>
+<input class="minNombre" required>
+</div>
+<div class="group">
+<label>Cargo</label>
+<select class="minCargo" required>
+<option value="">Seleccionar</option>
+<option>Miembro</option>
+<option>Líder</option>
+</select>
+</div>`;
+}
+};
+
+// supervisor
+document.querySelectorAll('[name="supervisor"]').forEach(r=>{
+r.onchange=()=>{
+sectorSupervisorDiv.classList.toggle("hidden",r.value==="No");
+sectorSupervisor.required=r.value==="Si";
+};
+});
+
+// submit
+form.onsubmit=async e=>{
+e.preventDefault();
+
+const ministerios=[];
+document.querySelectorAll(".minNombre").forEach((m,i)=>{
+ministerios.push({
+nombre:m.value,
+cargo:document.querySelectorAll(".minCargo")[i].value
+});
+});
+
+await addDoc(collection(db,"miembros"),{
+nombre:nombre.value,
+identidad:identidad.value,
+telefono:telefono.value,
+sector:sector.value,
+discipulado:discipulado.value,
+sirviendo:document.querySelector('[name="sirviendo"]:checked').value,
+ministerios,
+supervisor:document.querySelector('[name="supervisor"]:checked').value,
+sectorSupervisor:sectorSupervisor.value
+});
+
+alert("Guardado");
+form.reset();
+ministeriosContainer.innerHTML="";
+};
+
+</script>
+</body>
+</html>
