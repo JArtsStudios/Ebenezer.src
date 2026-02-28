@@ -1,55 +1,89 @@
-body{
-margin:0;
-background:#0a0a0a;
-color:white;
-font-family:system-ui;
-padding:20px;
+body {
+  margin: 0;
+  background: #0a0a0a;
+  color: white;
+  font-family: system-ui;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-.app{
-max-width:900px;
-margin:auto;
+.app {
+  max-width: 900px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
-header{
-font-size:20px;
-margin-bottom:20px;
+header {
+  font-size: 20px;
+  margin-bottom: 10px;
+  flex-shrink: 0;
 }
 
-.toolbar{
-display:flex;
-gap:10px;
-margin-bottom:15px;
+.toolbar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+  flex-shrink: 0;
 }
 
-select,button{
-padding:10px;
-background:#141414;
-border:1px solid #222;
-color:white;
-border-radius:6px;
+select,
+button {
+  padding: 10px;
+  background: #141414;
+  border: 1px solid #222;
+  color: white;
+  border-radius: 6px;
 }
 
-button{
-background:white;
-color:black;
-cursor:pointer;
+button {
+  background: white;
+  color: black;
+  cursor: pointer;
 }
 
-table{
-width:100%;
-border-collapse:collapse;
-margin-bottom:20px;
+.content {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 60px; /* espacio para footer fijo */
 }
 
-th,td{
-padding:10px;
-border-bottom:1px solid #222;
-text-align:center;
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
 }
 
-canvas{
-background:#111;
-padding:10px;
-border-radius:8px;
+th,
+td {
+  padding: 10px;
+  border-bottom: 1px solid #222;
+  text-align: center;
+}
+
+canvas {
+  background: #111;
+  padding: 10px;
+  border-radius: 8px;
+  display: block;
+  margin: auto;
+}
+
+/* Footer fijo abajo */
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  max-width: 900px;
+  margin: auto;
+  background: #0a0a0a;
+  padding: 10px 0;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  border-top: 1px solid #222;
+  z-index: 100;
 }
