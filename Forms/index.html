@@ -57,7 +57,11 @@
 <label>Cantidad ministerios</label>
 <select id="cantidadMinisterios">
 <option value="">Seleccionar</option>
-<option>1</option><option>2</option><option>3</option><option>4</option>
+<option value="0">0 (sirve sin ministerio)</option>
+<option>1</option>
+<option>2</option>
+<option>3</option>
+<option>4</option>
 </select>
 </div>
 
@@ -108,15 +112,25 @@ const db=getFirestore(app);
 // mostrar ministerios
 document.querySelectorAll('[name="sirviendo"]').forEach(r=>{
 r.onchange=()=>{
-ministerioSection.classList.toggle("hidden",r.value==="No");
-cantidadMinisterios.required=r.value==="Si";
+const sirve=r.value==="Si";
+ministerioSection.classList.toggle("hidden",!sirve);
+cantidadMinisterios.required=sirve;
+
+if(!sirve){
+cantidadMinisterios.value="";
+ministeriosContainer.innerHTML="";
+}
 };
 });
 
 // generar ministerios
 cantidadMinisterios.onchange=e=>{
 ministeriosContainer.innerHTML="";
-for(let i=1;i<=e.target.value;i++){
+const cantidad=parseInt(e.target.value);
+
+if(!cantidad || cantidad===0) return;
+
+for(let i=1;i<=cantidad;i++){
 ministeriosContainer.innerHTML+=`
 <div class="group">
 <label>Ministerio ${i}</label>
@@ -162,7 +176,7 @@ discipulado:discipulado.value,
 sirviendo:document.querySelector('[name="sirviendo"]:checked').value,
 ministerios,
 supervisor:document.querySelector('[name="supervisor"]:checked').value,
-sectorSupervisor:sectorSupervisor.value
+sectorSupervisor:sectorSupervisor.value || null
 });
 
 alert("Guardado");
