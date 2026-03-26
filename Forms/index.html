@@ -21,7 +21,7 @@
 
 <div class="group">
 <label>Identidad</label>
-<input id="identidad" required>
+<input id="identidad" maxlength="15" required>
 </div>
 
 <div class="group">
@@ -49,6 +49,16 @@
 <option>Miembro</option>
 <option>Sub líder</option>
 <option>Líder</option>
+<option>Ayuda</option>
+</select>
+</div>
+
+<div class="group">
+<label>¿Presta su casa para discipulado?</label>
+<select id="casaDiscipulado" required>
+<option value="">Seleccionar</option>
+<option>Sí</option>
+<option>No</option>
 </select>
 </div>
 
@@ -79,26 +89,34 @@
 
 </div>
 
-</section>
+<div id="noMinisterioSection" class="hidden">
 
-<section>
-
- <label class="section-title">Eres Supervisor de un Sector?</label>
-
-<div class="toggle">
-<label class="pill"><input type="radio" name="supervisor" value="Si" required><span>Sí</span></label>
-<label class="pill"><input type="radio" name="supervisor" value="No"><span>No</span></label>
-</div> 
-
- <div id="sectorSupervisorDiv" class="hidden">
 <div class="group">
-<label>Sector supervisado</label>
-<select id="sectorSupervisor">
+<label>¿Te gustaría servir en un ministerio?</label>
+<select id="quiereMinisterio">
 <option value="">Seleccionar</option>
-<option>1</option><option>2</option><option>3</option><option>4</option>
+<option>Sí</option>
+<option>No</option>
 </select>
 </div>
-</div> 
+
+<div id="ministerioDeseadoGroup" class="group hidden">
+<label>¿En qué ministerio?</label>
+<select id="ministerioDeseado">
+<option value="">Seleccionar</option>
+<option>Alabanza</option>
+<option>Danza</option>
+<option>Corros</option>
+<option>Niños</option>
+<option>Matrimonios</option>
+<option>Jóvenes</option>
+<option>Evangelismo</option>
+<option>Multimedia</option>
+<option>Sonido</option>
+</select>
+</div>
+
+</div>
 
 </section>
 
@@ -119,11 +137,28 @@ const app = initializeApp({
 });
 const db = getFirestore(app);
 
-// mostrar ministerios
+// FORMATO IDENTIDAD
+identidad.addEventListener("input", e => {
+  let value = e.target.value.replace(/\D/g, "");
+
+  if (value.length > 4) value = value.slice(0,4) + "-" + value.slice(4);
+  if (value.length > 9) value = value.slice(0,9) + "-" + value.slice(9);
+
+  e.target.value = value.slice(0,15);
+});
+
+// mostrar secciones
 document.querySelectorAll('[name="sirviendo"]').forEach(r=>{
   r.onchange = ()=>{
     const sirve = r.value === "Si";
     ministerioSection.classList.toggle("hidden", !sirve);
+
+    if(!sirve){
+      noMinisterioSection.classList.remove("hidden");
+    } else {
+      noMinisterioSection.classList.add("hidden");
+    }
+
     cantidadMinisterios.required = sirve;
 
     if(!sirve){
@@ -133,7 +168,12 @@ document.querySelectorAll('[name="sirviendo"]').forEach(r=>{
   };
 });
 
-// generar ministerios con lista de ministerios fijos
+// mostrar campo ministerio deseado
+quiereMinisterio.onchange = ()=>{
+  ministerioDeseadoGroup.classList.toggle("hidden", quiereMinisterio.value !== "Sí");
+};
+
+// lista ministerios
 const ministeriosLista = [
   "Alabanza",
   "Danza",
@@ -150,7 +190,15 @@ cantidadMinisterios.onchange = e=>{
   ministeriosContainer.innerHTML = "";
   const cantidad = parseInt(e.target.value);
 
-  if(!cantidad || cantidad === 0) return;
+  // 🔥 MOSTRAR pregunta si pone 0
+  if(cantidad === 0){
+    noMinisterioSection.classList.remove("hidden");
+    return;
+  } else {
+    noMinisterioSection.classList.add("hidden");
+  }
+
+  if(!cantidad) return;
 
   for(let i=1; i<=cantidad; i++){
     ministeriosContainer.innerHTML += `
@@ -172,14 +220,6 @@ cantidadMinisterios.onchange = e=>{
   }
 };
 
-// supervisor
-document.querySelectorAll('[name="supervisor"]').forEach(r=>{
-  r.onchange = ()=>{
-    sectorSupervisorDiv.classList.toggle("hidden", r.value === "No");
-    sectorSupervisor.required = r.value === "Si";
-  };
-});
-
 // submit
 form.onsubmit = async e=>{
   e.preventDefault();
@@ -199,15 +239,17 @@ form.onsubmit = async e=>{
     sector: sector.value,
     discipulado: discipulado.value,
     rolDiscipulado: rolDiscipulado.value,
+    casaDiscipulado: casaDiscipulado.value,
     sirviendo: document.querySelector('[name="sirviendo"]:checked').value,
     ministerios,
-    supervisor: document.querySelector('[name="supervisor"]:checked').value,
-    sectorSupervisor: sectorSupervisor.value || null
+    quiereMinisterio: quiereMinisterio?.value || null,
+    ministerioDeseado: ministerioDeseado?.value || null
   });
 
   alert("Guardado");
   form.reset();
   ministeriosContainer.innerHTML = "";
+  ministerioDeseadoGroup.classList.add("hidden");
 };
 
 </script>
