@@ -1,207 +1,152 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Multimedia</title>
-    <link rel="stylesheet" href="../css/multimedia.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
-    <link rel="icon" href="../img/logo pequeño.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Multimedia</title>
+
+  <link rel="stylesheet" href="../css/multimedia.css" />
+  <link rel="icon" href="../img/logo pequeño.png" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 </head>
+
 <body>
+  <div class="bg" aria-hidden="true"></div>
 
-    <div class="blur"></div>
+  <!-- Topbar -->
+  <header class="topbar" id="top">
+    <a class="back" href="../inicio/" aria-label="Salir">
+      <i class="fa-solid fa-arrow-left"></i>
+      <span>Salir</span>
+    </a>
 
-    <header>
-        <div class="salir">
-            <a href="../inicio/">
-                <div class="icono-salir"><h1><</h1></div>
-    
-            </a>
-            <div class="salir-h1">
-                <h1>Salir</h1>
-            </div>
-        
+
+
+
+  </header>
+
+  <!-- HERO (banner del canal por JS en background) -->
+  <section class="hero">
+    <div id="channelHeader" class="hero-banner">
+      <div class="hero-fade"></div>
+
+      <div class="hero-content">
+        <p class="hero-kicker">EBENEZER SRC HN</p>
+        <h1 class="hero-title">MULTIMEDIA</h1>
+        <p class="hero-sub">Explora transmisiones, videos y podcasts.</p>
+
+        <div class="hero-actions">
+          <a class="btn primary" href="#liveSection">
+            <i class="bi bi-broadcast"></i> En Vivo
+          </a>
+          <a class="btn" href="#videosSection">
+            <i class="bi bi-play-circle-fill"></i> Videos
+          </a>
         </div>
-        <div class="buscador">
-            <div class="search-container">
-                <input type="text" id="searchInput" placeholder="Buscar..." autocomplete="off" />
-                <i class="fas fa-search search-icon"></i>
-            </div>
-            <div id="searchResults"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tabs Sticky -->
+  <nav class="tabs">
+    <div class="tabs-inner">
+      <a class="tab" href="#liveSection"><i class="bi bi-broadcast"></i></i> En Vivo</a>
+      <a class="tab" href="#videosSection"><i class="bi bi-play-circle-fill"></i> Videos</a>
+      <a class="tab" href="#pastStreamsSection"><i class="bi bi-clock-history"></i></i> Transmisiones Pasadas</a>
+      <a class="tab" href="#podcastsSection"><i class="bi bi-mic-fill"></i>Podcasts</a>
+    </div>
+  </nav>
+
+  <!-- CONTENT -->
+  <main class="wrap">
+
+    <section id="liveSection" class="section">
+      <div class="section-head">
+        <h2><i class="bi bi-broadcast"></i> En Vivo</h2>
+        <a class="mini" href="#top"><i class="bi bi-caret-up-fill"></i></a>
+      </div>
+      <div id="live" class="grid"></div>
+    </section>
+
+    <section id="videosSection" class="section">
+      <div class="section-head">
+        <h2><i class="bi bi-play-circle-fill"></i> Videos</h2>
+        <a class="mini" href="#top"><i class="bi bi-caret-up-fill"></i></a>
+      </div>
+      <div id="videos" class="grid"></div>
+    </section>
+
+    <section id="pastStreamsSection" class="section">
+      <div class="section-head">
+        <h2><i class="bi bi-clock-history"></i> Transmisiones Pasadas</h2>
+        <a class="mini" href="#top"><i class="bi bi-caret-up-fill"></i></a>
+      </div>
+      <div id="pastStreams" class="grid"></div>
+    </section>
+
+    <section id="podcastsSection" class="section">
+      <div class="section-head">
+        <h2><i class="bi bi-mic-fill"></i> Podcasts</h2>
+        <a class="mini" href="#top"><i class="bi bi-caret-up-fill"></i></a>
+      </div>
+      <div id="podcasts" class="grid"></div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="fbrand">
+        <h3>EBENEZER SRC HN</h3>
+        <p>Somos una Iglesia bendecida prosperada en victoria y agradecida</p>
+      </div>
+
+      <div class="flinks">
+        <a href="../inicio/">Inicio</a>
+        <a href="../ministerio/">Ministerio</a>
+        <a href="../escuela/">Escuela</a>
+        <a href="../oraciones/">Oraciones</a>
+        <a href="../eventos/">Eventos</a>
+        <a href="../social/">Social</a>
+      </div>
+
+      <div class="fsocial">
+        <p class="muted">Redes</p>
+        <div class="fsocial-row">
+          <a href="https://www.facebook.com/Ebenezersantaritacopan" aria-label="Facebook">
+            <img src="../img/icono facebook.png" alt="facebook-icon">
+          </a>
+          <a href="https://www.instagram.com/ebenezer_santa_rita_copan_hn/" aria-label="Instagram">
+            <img src="../img/icono instagram.png" alt="instagram-icon">
+          </a>
+          <a href="https://www.threads.net/@ebenezer_santa_rita_copan_hn?xmt=AQGzwkF8ilaiVWQnhKauaFZZdUW4i6pKcwABdJqOOzmhl7M" aria-label="Threads">
+            <img src="../img/icono Threads.png" alt="threads-icon">
+          </a>
+          <a href="https://youtube.com/@ebenezersantarita?si=Jx77Lc7kCwpXxxap" aria-label="YouTube">
+            <img src="../img/icono youtube.png" alt="youtube-icon">
+          </a>
         </div>
-    </header>
-    <div class="container-titulo">
-        <div class="titulo">
-            <h1>MULTIMEDIA</h1>
-        </div>
-    
+      </div>
     </div>
 
+    <div class="footer-bottom">
+      <div class="creditos">
+        <h3>Sitio-Web desarrollado por: <br> J Arts Studio</h3>
+        <a href="https://jartsstudios.github.io/J-Arts-Studios/">©J Arts Studios 2024</a>
+      </div>
+    </div>
+  </footer>
 
-    <nav>
-        <ul>
-            <li><a href="#live">En Vivo</a></li>
-            <li><a href="#videos">Videos</a></li>
-            <li><a href="#pastStreams">Transmisiones Pasadas</a></li>
-            <li><a href="#podcasts">Podcasts</a></li>
-        </ul>
-    </nav>
-
-
-    <!-- <header id="channelHeader"></header> -->
-
-
-
-
-    <section id="liveSection">
-        <h2>En Vivo</h2>
-        <div id="live"></div>
-    </section>
-    <section id="pastStreamsSection">
-        <h2></h2>
-        <div id="pastStreams"></div>
-    </section>
-    <section id="videosSection">
-        <h2>Videos y Transmisiones</h2>
-        <div id="videos"></div>
-    </section>
-    <section id="podcastsSection">
-        <h2>Podcasts</h2>
-        <div id="podcasts"></div>
-    </section>
-
-
-
-    <footer>
-        <div class="container-footer">
-            <div class="titulo-footer">
-                <h1>EBENEZER SRC HN</h1>
-                <p>Somos una Iglesia bendecida prosperada en victoria y agradecida</p>
-            </div>
-            <div class="footer-nav">
-                <a href="../inicio/">Inicio</a>
-                <a href="../ministerio/">Ministerio</a>
-                <a href="../escuela/">Escuela</a>
-                <a href="../oraciones/">Oraciones</a>
-                <a href="../eventos/">Eventos</a>
-                <a href="../social/">Social</a>
-            </div>
-        </div>
-        <div class="social-titulo">
-            <h3>Siguenos en nuestras redes sociales.</h3>
-        </div>
-        <div class="social-footer">
-            <a href="https://www.facebook.com/Ebenezersantaritacopan">
-                <img src="../img/icono facebook.png" alt="facebook-icon">
-            </a>
-            <a href="https://www.instagram.com/ebenezer_santa_rita_copan_hn/">
-                <img src="../img/icono instagram.png" alt="instagram-icon">
-            </a>
-            <a href="https://www.threads.net/@ebenezer_santa_rita_copan_hn?xmt=AQGzwkF8ilaiVWQnhKauaFZZdUW4i6pKcwABdJqOOzmhl7M">
-                <img src="../img/icono Threads.png" alt="threads-icon">
-            </a>
-            <a href="https://youtube.com/@ebenezersantarita?si=Jx77Lc7kCwpXxxap">
-                <img src="../img/icono youtube.png" alt="youtube-icon">
-            </a>
-        </div>
-        <div class="creditos">
-            <h3>Sitio-Web desarrollado por: <br> J Arts Studio </h3>
-            <a href="https://jartsstudios.github.io/J-Arts-Studios/">©J Arts Studios 2024</a>
-        </div>
-    </footer>
-
-
-
-
-
-     <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute;">
-    <filter id="filtroVidrioMascara" x="-50%" y="-50%" width="200%" height="200%">
-      
-      <!-- 1. Turbulencia (ondas) -->
-      <feTurbulence type="fractalNoise" baseFrequency="0.01" numOctaves="2" result="ruido" />
-
-      <!-- 2. Máscara radial: centro blanco (sin efecto), bordes negros (con efecto) -->
-      <feImage result="mascaraRadial"
-        href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJhZGlhbEdyYWRpZW50IGlkPSJyIiBjeD0iMTAwIiBjeT0iMTAwIiByPSI4MCI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjZmZmIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMDAwIi8+PC9yYWRpYWxHcmFkaWVudD48cmVjdCBmaWxsPSJ1cmwoI3IpIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIvPjwvc3ZnPg=="
-        preserveAspectRatio="none"
-      />
-
-      <!-- 3. Composición: ondas * máscara radial -->
-      <feComposite in="ruido" in2="mascaraRadial" operator="in" result="ondasLimitadas" />
-
-      <!-- 4. Aplicar desplazamiento -->
-      <feDisplacementMap in="SourceGraphic" in2="ondasLimitadas" scale="150"
-        xChannelSelector="R" yChannelSelector="G" />
-    </filter>
-  </svg>
-
-    
-
-<svg width="0" height="0" style="position:absolute;">
-  <defs>
-    <filter id="chromatic-aberration" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
-      <!-- Desplazar rojo -->
-      <feOffset in="SourceGraphic" dx="-2" dy="0" result="red" />
-      <feColorMatrix in="red" type="matrix" values="
-         1 0 0 0 0
-         0 0 0 0 0
-         0 0 0 0 0
-         0 0 0 1 0" result="redOnly" />
-      
-      <!-- Desplazar verde -->
-      <feOffset in="SourceGraphic" dx="0" dy="0" result="green" />
-      <feColorMatrix in="green" type="matrix" values="
-         0 0 0 0 0
-         0 1 0 0 0
-         0 0 0 0 0
-         0 0 0 1 0" result="greenOnly" />
-      
-      <!-- Desplazar azul -->
-      <feOffset in="SourceGraphic" dx="2" dy="0" result="blue" />
-      <feColorMatrix in="blue" type="matrix" values="
-         0 0 0 0 0
-         0 0 0 0 0
-         0 0 1 0 0
-         0 0 0 1 0" result="blueOnly" />
-      
-      <!-- Combinar los colores -->
-      <feBlend in="redOnly" in2="greenOnly" mode="screen" result="rg" />
-      <feBlend in="rg" in2="blueOnly" mode="screen" />
-    </filter>
-  </defs>
-</svg>
-
-
-
-    
-    <script src="../js/multimedia.js"></script>
-    <script src="../js/buscador.js"></script>
-
- 
-
+  <script src="../js/multimedia.js"></script>
+  <script src="../js/buscador.js"></script>
 </body>
 </html>
