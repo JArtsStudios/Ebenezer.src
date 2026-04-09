@@ -186,14 +186,13 @@ const ministeriosLista = [
   "Sonido",
   "Intercesión",
   "cocina",
-  "logista"
 ];
 
 cantidadMinisterios.onchange = e=>{
   ministeriosContainer.innerHTML = "";
   const cantidad = parseInt(e.target.value);
 
-  // 🔥 MOSTRAR pregunta si pone 0
+  
   if(cantidad === 0){
     noMinisterioSection.classList.remove("hidden");
     return;
