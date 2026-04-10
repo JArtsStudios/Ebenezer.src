@@ -31,6 +31,10 @@ if(pass !== "ebenezer2026"){ alert("Acceso denegado"); location.reload(); }
     <option value="Todos">Todos</option>
     <option>1</option><option>2</option><option>3</option><option>4</option>
   </select>
+
+  <!-- 🔥 BUSCADOR -->
+  <input id="buscador" placeholder="Buscar nombre, discipulado o ministerio...">
+
   <button onclick="exportar()">Exportar</button>
 </div>
 
@@ -40,6 +44,7 @@ if(pass !== "ebenezer2026"){ alert("Acceso denegado"); location.reload(); }
 <tr>
 <th>Nombre</th>
 <th>ID</th>
+<th>Teléfono</th>
 <th>Sector</th>
 <th>Discipulado</th>
 <th>Rol</th>
@@ -96,12 +101,29 @@ function formatearMinisterios(mins){
   return mins.map(m=>`${m.nombre} (${m.cargo})`).join(", ");
 }
 
+function coincideBusqueda(m, texto){
+  texto = texto.toLowerCase();
+
+  const nombre = m.nombre?.toLowerCase() || "";
+  const discipulado = m.discipulado?.toLowerCase() || "";
+
+  const ministerios = (m.ministerios || [])
+    .map(x => x.nombre.toLowerCase())
+    .join(" ");
+
+  return nombre.includes(texto) ||
+         discipulado.includes(texto) ||
+         ministerios.includes(texto);
+}
+
 function render(){
   tabla.innerHTML = "";
   const f = filtroSector.value;
+  const texto = buscador.value.trim().toLowerCase();
 
   miembros.forEach(m=>{
-    if(f === "Todos" || m.sector === f){
+    if((f === "Todos" || m.sector === f) &&
+       (!texto || coincideBusqueda(m, texto))){
 
       const numMin = m.ministerios?.length || 0;
 
@@ -111,6 +133,7 @@ function render(){
       tabla.innerHTML += `<tr>
 <td>${m.nombre}</td>
 <td>${m.identidad}</td>
+<td>${m.telefono || "—"}</td>
 <td>${m.sector}</td>
 <td>${m.discipulado || "—"}</td>
 <td>${m.rolDiscipulado || "—"}</td>
@@ -125,6 +148,7 @@ function render(){
 }
 
 filtroSector.onchange = render;
+buscador.oninput = render; // 🔥 BUSCA EN TIEMPO REAL
 
 function graf(){
 
@@ -185,7 +209,7 @@ function graf(){
 }
 
 window.exportar = function(){
-  let csv = "Nombre,ID,telefono,Sector,Discipulado,Rol,Casa,Sirviendo,Ministerios,Quiere Servir,Ministerio Deseado\n";
+  let csv = "Nombre,ID,Telefono,Sector,Discipulado,Rol,Casa,Sirviendo,Ministerios,Quiere Servir,Ministerio Deseado\n";
 
   miembros.forEach(m=>{
     const mins = m.ministerios?.map(x=>`${x.nombre} (${x.cargo})`).join(" | ") || "";
@@ -194,7 +218,7 @@ window.exportar = function(){
     const quiere = numMin === 0 ? (m.quiereMinisterio || "") : "";
     const deseado = numMin === 0 ? (m.ministerioDeseado || "") : "";
 
-    csv += `${m.nombre},${m.identidad},${m.sector},${m.discipulado || ""},${m.rolDiscipulado || ""},${m.casaDiscipulado || ""},${m.sirviendo},${mins},${quiere},${deseado}\n`;
+    csv += `${m.nombre},${m.identidad},${m.telefono || ""},${m.sector},${m.discipulado || ""},${m.rolDiscipulado || ""},${m.casaDiscipulado || ""},${m.sirviendo},${mins},${quiere},${deseado}\n`;
   });
 
   const blob = new Blob([csv]);

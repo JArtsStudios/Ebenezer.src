@@ -204,3 +204,40 @@ tr:hover {
     font-size: 18px;
   }
 }
+
+
+/* BUSCADOR */
+#buscador {
+  flex: 1;
+  min-width: 220px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #222;
+  background: #141414;
+  color: white;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+#buscador::placeholder {
+  color: #777;
+}
+
+#buscador:focus {
+  outline: none;
+  border-color: #00ffaa;
+  box-shadow: 0 0 8px rgba(0, 255, 170, 0.15);
+}
+
+/* ajustar toolbar para que todo se alinee bien */
+.toolbar {
+  align-items: center;
+}
+
+/* móvil */
+@media (max-width: 768px) {
+  #buscador {
+    width: 100%;
+    min-width: unset;
+  }
+}
