@@ -185,7 +185,7 @@ function graf(){
 }
 
 window.exportar = function(){
-  let csv = "Nombre,ID,Sector,Discipulado,Rol,Casa,Sirviendo,Ministerios,Quiere Servir,Ministerio Deseado\n";
+  let csv = "Nombre,ID,telefono,Sector,Discipulado,Rol,Casa,Sirviendo,Ministerios,Quiere Servir,Ministerio Deseado\n";
 
   miembros.forEach(m=>{
     const mins = m.ministerios?.map(x=>`${x.nombre} (${x.cargo})`).join(" | ") || "";
