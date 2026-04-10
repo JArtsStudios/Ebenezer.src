@@ -37,9 +37,23 @@
 </select>
 </div>
 
+<!-- 🔥 SOLO ESTO CAMBIÓ -->
 <div class="group">
 <label>Discipulado</label>
-<input id="discipulado" required>
+<select id="discipulado" required>
+<option value="">Seleccionar</option>
+<option>#1</option>
+<option>#2</option>
+<option>#3</option>
+<option>#4</option>
+<option>#5</option>
+<option>#6</option>
+<option>#7</option>
+<option>#8</option>
+<option>#9</option>
+<option>#10</option>
+<option>Copan</option>
+</select>
 </div>
 
 <div class="group">
@@ -115,7 +129,6 @@
 <option>Sonido</option>
 <option>Intercesión</option>
 <option>Cocina</option>
-  
 </select>
 </div>
 
@@ -188,14 +201,13 @@ const ministeriosLista = [
   "Multimedia",
   "Sonido",
   "Intercesión",
-  "cocina",
+  "Cocina"
 ];
 
 cantidadMinisterios.onchange = e=>{
   ministeriosContainer.innerHTML = "";
   const cantidad = parseInt(e.target.value);
 
-  
   if(cantidad === 0){
     noMinisterioSection.classList.remove("hidden");
     return;

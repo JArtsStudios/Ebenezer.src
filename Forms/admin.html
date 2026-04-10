@@ -16,25 +16,33 @@ if(pass !== "ebenezer2026"){ alert("Acceso denegado"); location.reload(); }
 
 <div class="app">
 
-<header>Panel miembros</header>
+<header>
+  <h1>Panel de Miembros</h1>
+  <div class="stats">
+    <div class="card">
+      <span>Total Miembros</span>
+      <h2 id="totalMiembros">0</h2>
+    </div>
+  </div>
+</header>
 
 <div class="toolbar">
-<select id="filtroSector">
-<option value="Todos">Todos</option>
-<option>1</option><option>2</option><option>3</option><option>4</option>
-</select>
-<button onclick="exportar()">Exportar</button>
+  <select id="filtroSector">
+    <option value="Todos">Todos</option>
+    <option>1</option><option>2</option><option>3</option><option>4</option>
+  </select>
+  <button onclick="exportar()">Exportar</button>
 </div>
 
+<div class="table-container">
 <table>
 <thead>
 <tr>
 <th>Nombre</th>
 <th>ID</th>
-<th>Teléfono</th>
 <th>Sector</th>
 <th>Discipulado</th>
-<th>Rol Disc.</th>
+<th>Rol</th>
 <th>Casa</th>
 <th>Sirviendo</th>
 <th>Ministerios</th>
@@ -44,8 +52,16 @@ if(pass !== "ebenezer2026"){ alert("Acceso denegado"); location.reload(); }
 </thead>
 <tbody id="tabla"></tbody>
 </table>
+</div>
 
-<canvas id="grafica"></canvas>
+<div class="charts">
+  <div class="chart-box">
+    <canvas id="grafica"></canvas>
+  </div>
+  <div class="chart-box">
+    <canvas id="graficaPastel"></canvas>
+  </div>
+</div>
 
 </div>
 
@@ -55,26 +71,29 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/fireba
 import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
 
 const app = initializeApp({
-  apiKey: "AIzaSyBtPxzxzXYWKRDOo_EMtp5iCfLYzLe5CFU",
+  apiKey: "AIzaSy...",
   authDomain: "miembros-ebenezer-src.firebaseapp.com",
   projectId: "miembros-ebenezer-src"
 });
 const db = getFirestore(app);
 
 let miembros = [];
+let chartBar, chartPie;
 
 async function cargar() {
   const snap = await getDocs(collection(db, "miembros"));
   miembros = [];
   snap.forEach(d => miembros.push(d.data()));
+
+  totalMiembros.textContent = miembros.length;
+
   render();
   graf();
 }
 
-// formatear ministerios
 function formatearMinisterios(mins){
   if(!mins || mins.length===0) return "—";
-  return mins.map(m=>`${m.nombre} (${m.cargo})`).join("<br>");
+  return mins.map(m=>`${m.nombre} (${m.cargo})`).join(", ");
 }
 
 function render(){
@@ -86,23 +105,18 @@ function render(){
 
       const numMin = m.ministerios?.length || 0;
 
-      // solo mostrar si NO sirve en ministerios
       const quiereServir = numMin === 0 ? (m.quiereMinisterio || "—") : "—";
       const ministerioDeseado = numMin === 0 ? (m.ministerioDeseado || "—") : "—";
 
       tabla.innerHTML += `<tr>
 <td>${m.nombre}</td>
 <td>${m.identidad}</td>
-<td>${m.telefono || "—"}</td>
 <td>${m.sector}</td>
-<td>${m.discipulado||"—"}</td>
-<td>${m.rolDiscipulado||"—"}</td>
+<td>${m.discipulado || "—"}</td>
+<td>${m.rolDiscipulado || "—"}</td>
 <td>${m.casaDiscipulado || "—"}</td>
 <td>${m.sirviendo}</td>
-<td>
-<b>${numMin}</b><br>
-${formatearMinisterios(m.ministerios)}
-</td>
+<td>${formatearMinisterios(m.ministerios)}</td>
 <td>${quiereServir}</td>
 <td>${ministerioDeseado}</td>
 </tr>`;
@@ -113,27 +127,66 @@ ${formatearMinisterios(m.ministerios)}
 filtroSector.onchange = render;
 
 function graf(){
-  const c = {"1":0,"2":0,"3":0,"4":0};
-  miembros.forEach(m=>c[m.sector]++);
-  new Chart(grafica, {
+
+  if(chartBar) chartBar.destroy();
+  if(chartPie) chartPie.destroy();
+
+  const sectores = {"1":0,"2":0,"3":0,"4":0};
+
+  let sirviendo = 0;
+  let noSirviendo = 0;
+  let quierenServir = 0;
+
+  miembros.forEach(m=>{
+    sectores[m.sector]++;
+
+    const numMin = m.ministerios?.length || 0;
+
+    if(numMin > 0){
+      sirviendo++;
+    } else if(m.quiereMinisterio){
+      quierenServir++;
+    } else {
+      noSirviendo++;
+    }
+  });
+
+  chartBar = new Chart(grafica, {
     type: "bar",
     data: {
       labels: ["1","2","3","4"],
       datasets: [{
         label: "Miembros por Sector",
-        data: [c["1"], c["2"], c["3"], c["4"]],
+        data: [sectores["1"], sectores["2"], sectores["3"], sectores["4"]],
         backgroundColor: ["#00aaff","#ffaa00","#ff00aa","#00ffaa"]
       }]
     },
     options:{
       responsive:true,
+      maintainAspectRatio:false,
       plugins:{legend:{display:false}}
+    }
+  });
+
+  chartPie = new Chart(graficaPastel, {
+    type: "pie",
+    data: {
+      labels: ["Sirviendo", "No Sirviendo", "Quieren Servir"],
+      datasets: [{
+        data: [sirviendo, noSirviendo, quierenServir],
+        backgroundColor: ["#00ffaa","#ff4444","#ffaa00"]
+      }]
+    },
+    options:{
+      responsive:true,
+      maintainAspectRatio:false
     }
   });
 }
 
 window.exportar = function(){
-  let csv = "Nombre,ID,Telefono,Sector,Discipulado,Rol Discipulado,Casa,Sirviendo,Ministerios,Quiere Servir,Ministerio Deseado\n";
+  let csv = "Nombre,ID,Sector,Discipulado,Rol,Casa,Sirviendo,Ministerios,Quiere Servir,Ministerio Deseado\n";
+
   miembros.forEach(m=>{
     const mins = m.ministerios?.map(x=>`${x.nombre} (${x.cargo})`).join(" | ") || "";
     const numMin = m.ministerios?.length || 0;
@@ -141,8 +194,9 @@ window.exportar = function(){
     const quiere = numMin === 0 ? (m.quiereMinisterio || "") : "";
     const deseado = numMin === 0 ? (m.ministerioDeseado || "") : "";
 
-    csv += `${m.nombre},${m.identidad},${m.telefono||""},${m.sector},${m.discipulado||""},${m.rolDiscipulado||""},${m.casaDiscipulado||""},${m.sirviendo},${mins},${quiere},${deseado}\n`;
+    csv += `${m.nombre},${m.identidad},${m.sector},${m.discipulado || ""},${m.rolDiscipulado || ""},${m.casaDiscipulado || ""},${m.sirviendo},${mins},${quiere},${deseado}\n`;
   });
+
   const blob = new Blob([csv]);
   const a = document.createElement("a");
   a.href = URL.createObjectURL(blob);
