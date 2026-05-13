@@ -1,12 +1,21 @@
 const eventos = [
- {
+
+
+   {
     id: 1,
-    titulo: "Santa Cena",
-    descripcion: "Conmemoración del sacrificio de Cristo mediante pan y vino sagrado.",
-    fecha: "2026-02-01T17:00:00",
-    img: "../img/santacena.png"
+    titulo: "Edificacion del templo del Señor",
+    descripcion: "Edificacion del templo del señor, 10AM Estudio de Pastores 3PM Pastor Milton Cordón 5PM Apóstol Fredy Franco",
+    fecha: "2026-05-23T16:00:00",
+    img: "../img/edificacion-portada.png"
   },
 
+   {
+    id: 2,
+    titulo: "Santa Cena",
+    descripcion: "Conmemoración del sacrificio de Cristo mediante pan y vino sagrado.",
+    fecha: "2026-06-07T23:00:00",
+    img: "../img/santacena.png"
+  },
  
 ];
 
