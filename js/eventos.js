@@ -3,8 +3,8 @@ const eventos = [
 
    {
     id: 1,
-    titulo: "Edificacion del templo del Señor",
-    descripcion: "Edificacion del templo del señor, 10AM Estudio de Pastores 3PM Pastor Milton Cordón 5PM Apóstol Fredy Franco",
+    titulo: "Dedicación del templo del Señor",
+    descripcion: "Dedicación del templo del señor, 10AM Estudio de Pastores 3PM Pastor Milton Cordón 5PM Apóstol Fredy Franco",
     fecha: "2026-05-23T16:00:00",
     img: "../img/edificacion-portada.png"
   },
