@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     } catch (e) {
       console.error('Live error:', e.message);
-      showError('live', 'No se pudo cargar En Vivo. Revisa tu API Key (posible restricción por dominio).');
+      showError('live', 'No se pudo cargar En Vivo.).');
     }
   })();
 
