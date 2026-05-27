@@ -1,16 +1,10 @@
 const eventos = [
 
 
-   {
-    id: 1,
-    titulo: "Dedicación del templo del Señor",
-    descripcion: "Dedicación del templo del señor, 10AM Estudio de Pastores 3PM Pastor Milton Cordón 5PM Apóstol Fredy Franco",
-    fecha: "2026-05-23T16:00:00",
-    img: "../img/edificacion-portada.png"
-  },
+ 
 
    {
-    id: 2,
+    id: 1,
     titulo: "Santa Cena",
     descripcion: "Conmemoración del sacrificio de Cristo mediante pan y vino sagrado.",
     fecha: "2026-06-07T23:00:00",
